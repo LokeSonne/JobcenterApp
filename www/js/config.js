@@ -51,6 +51,11 @@ var jobcenterapp = angular.module('jobcenterapp', [
         url: '/main',
         templateUrl: 'views/main.html'
       })
+
+      .state('rekruttering', {
+        url: '/rekruttering',
+        templateUrl: 'views/rekruttering.html'
+      })
   ;
 
   // if none of the above states are matched, use this as the fallback
