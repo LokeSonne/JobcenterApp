@@ -43,7 +43,6 @@ gulp.task('install', ['git-check'], function() {
     });
 });
 
-//Cacher html i $cacheFactory. Ikke implementeret endnu todo implementer cache_templates for at undgå get-request på html templates
 gulp.task('cache_templates', function() {
   console.log('cache_templates');
   gulp.src('www/views/**/*.html')
@@ -59,7 +58,7 @@ gulp.task('cache_templates', function() {
 gulp.task('wiredep', function () {
   var wiredep = require('wiredep').stream;
 
-  gulp.src('www/main.html')
+  gulp.src('www/index.html')
       .pipe(wiredep({
         directory: './www/lib',
         exclude: ['/angular/', 'angular-animate', 'angular-mocks', 'angular-resource', 'angular-sanitize', 'angular-ui-router']

@@ -9286,3 +9286,17 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+.footer {
+  padding: 0; }
+  .footer .footer__button {
+    margin: 0;
+    border-radius: 0; }
+
+.listitem {
+  padding: 2px 0 2px 16px; }
+  .listitem .input-label {
+    font-size: 12px; }
+
+.item {
+  white-space: initial; }

@@ -1,6 +1,9 @@
 var jobcenterapp = angular.module('jobcenterapp', [
   'ionic',
-  'templates'
+  'templates',
+  'jobcenterapp.directives',
+  'jobcenterapp.controllers',
+  'LocalForageModule'
   ])
 
 .run(['$ionicPlatform', function($ionicPlatform) {
@@ -39,6 +42,8 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
       .state('login', {
         url: '/login',
+        controller: 'LoginController',
+        controllerAs: 'Login',
         templateUrl: 'views/login.html'
       })
 
@@ -49,12 +54,24 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
       .state('main', {
         url: '/main',
+        controller: 'MainController',
+        controllerAs: 'Main',
         templateUrl: 'views/main.html'
       })
 
       .state('rekruttering', {
         url: '/rekruttering',
         templateUrl: 'views/rekruttering.html'
+      })
+
+      .state('tak', {
+        url: '/tak',
+        templateUrl: 'views/tak.html'
+      })
+
+      .state('minside', {
+        url: '/minside',
+        templateUrl: 'views/minside.html'
       })
   ;
 
