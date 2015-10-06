@@ -3,15 +3,19 @@ angular.module('jobcenterapp.controllers')
 			var Main = this;
 			Main.model = {};
 			Main.alert = '';
-			var checkFirstRun;
 
-			Main.test = 'Jobcentertets';
+			Main.test = 'JobcenterTits!';
 
-			//Hide back button
+			/**
+			 *	Hide back button
+			 */
 			$ionicNavBarDelegate.showBackButton(false);
 
-
+			/**
+			 * Check if it is the first time the app runs
+			 */
 			checkFirstRun = function (){
+				$log.debug('checkFirstRun');
 				$localForage.getItem('firstRun').then(function(data) {
 					if(data === null) {
 						$localForage.setItem('firstRun', true);
@@ -29,10 +33,7 @@ angular.module('jobcenterapp.controllers')
 						return false;
 					}
 				});
-			};
-			checkFirstRun();
-
-
-	}]);
+			}();
+		}]);
 
 

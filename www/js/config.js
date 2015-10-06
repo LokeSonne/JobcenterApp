@@ -3,7 +3,8 @@ var jobcenterapp = angular.module('jobcenterapp', [
   'templates',
   'jobcenterapp.directives',
   'jobcenterapp.controllers',
-  'LocalForageModule'
+  'LocalForageModule',
+  'ngRaven'
   ])
 
 .run(['$ionicPlatform', '$rootScope', function($ionicPlatform, $rootScope) {
@@ -19,9 +20,10 @@ var jobcenterapp = angular.module('jobcenterapp', [
   });
 }])
 
-.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', '$logProvider', 'Constants', '$httpProvider', '$ionicConfigProvider' ,function($stateProvider, $urlRouterProvider, $compileProvider, $logProvider, Constants, $httpProvider, $ionicConfigProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', '$logProvider', 'Constants', '$httpProvider', '$ionicConfigProvider', '$ravenProvider' ,function($stateProvider, $urlRouterProvider, $compileProvider, $logProvider, Constants, $httpProvider, $ionicConfigProvider, $ravenProvider) {
   $compileProvider.debugInfoEnabled(Constants.development);
   $logProvider.debugEnabled(Constants.development);
+  $ravenProvider.development(Constants.development);
 
   if (ionic.Platform.isAndroid()) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
@@ -43,8 +45,7 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
       .state('login', {
         url: '/login',
-        controller: 'LoginController',
-        controllerAs: 'Login',
+        controller: 'LoginController as Login',
         templateUrl: 'views/login.html'
       })
 
@@ -55,13 +56,13 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
       .state('main', {
         url: '/main',
-        controller: 'MainController',
-        controllerAs: 'Main',
+        controller: 'MainController as Main',
         templateUrl: 'views/main.html'
       })
 
       .state('rekruttering', {
         url: '/rekruttering',
+        controller: 'MainController as Main',
         templateUrl: 'views/rekruttering.html'
       })
 

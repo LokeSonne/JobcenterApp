@@ -38,7 +38,20 @@
       <!-- bower:js -->
       <script src="lib/localforage/dist/localforage.js"></script>
       <script src="lib/angular-localforage/dist/angular-localForage.js"></script>
+      <script src="lib/raven-js/dist/raven.js"></script>
+      <script src="lib/angular-raven/angular-raven.js"></script>
       <!-- endbower -->
+
+      <script>
+        Raven.config('https://bd30ede238e94758963dae1a4dfb8dd8@app.getsentry.com/54198', {
+          // Raven settings
+        })
+        .setUser({
+          "id": "tuna",
+          "email": "tjunadk@gmail.com"
+        })
+        .install();
+      </script>
 
       <!-- your app's js -->
       <script src="js/config.js"></script>

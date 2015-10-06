@@ -2,20 +2,7 @@
   <ion-content padding="true" class="has-header has-footer">
 
     <ul class="list">
-
-      <li class="item item-checkbox">
-        <label class="checkbox">
-          <input type="checkbox">
-        </label>
-        Jeg har akut brug for medarbejdere
-      </li>
-
-      <li class="item item-checkbox">
-        <label class="checkbox">
-          <input type="checkbox">
-        </label>
-        Jeg forventer at have brug for medarbejdere i de kommende måneder.
-      </li>
+      <p>{{Main.test || 'INGEN DATA'}}</p>
 
       <ion-radio ng-model="choice" ng-value="'A'">Jeg har akut brug for medarbejdere</ion-radio>
       <ion-radio ng-model="choice" ng-value="'B'">Jeg forventer at have brug for medarbejdere i de kommende måneder.</ion-radio>
