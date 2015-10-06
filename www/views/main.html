@@ -1,4 +1,4 @@
-<ion-view title="{{}}">
+<ion-view title="{{ Main.test || 'Jobcenter'}}">
   <ion-content padding="true" class="has-header">
 
     <button ui-sref="rekruttering" class="button button-dark button-outline button-block ">Rekruttering</button>
@@ -7,7 +7,11 @@
     <button ui-sref="fleksjob" class="button button-dark button-outline button-block ">Fleksjob</button>
     <button ui-sref="voksenlærlinge" class="button button-dark button-outline button-block ">Voksenlærlinge</button>
     <button ui-sref="jobservice" class="button button-dark button-outline button-block ">Jobservice</button>
-    <button ui-sref="minside" class="button button-dark button-outline button-block ">Min side</button>
 
   </ion-content>
+  <ion-footer-bar class="footer">
+    <button  ui-sref="minside" class="button button-stable button-block footer__button">Min side</button>
+    <!--todo style knap til at være lig med footer-->
+    <!--todo indsæt ng-disabled="Login.loginForm.$invalid på button"-->
+  </ion-footer-bar>
 </ion-view>

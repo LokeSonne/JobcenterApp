@@ -6,7 +6,8 @@ var jobcenterapp = angular.module('jobcenterapp', [
   'LocalForageModule'
   ])
 
-.run(['$ionicPlatform', function($ionicPlatform) {
+.run(['$ionicPlatform', '$rootScope', function($ionicPlatform, $rootScope) {
+
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);

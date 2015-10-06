@@ -1,9 +1,15 @@
 angular.module('jobcenterapp.controllers')
-		.controller('MainController', ['$log', '$localForage', '$ionicPopup' ,function MainController($log, $localForage, $ionicPopup) {
+		.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate) {
 			var Main = this;
 			Main.model = {};
 			Main.alert = '';
 			var checkFirstRun;
+
+			Main.test = 'Jobcentertets';
+
+			//Hide back button
+			$ionicNavBarDelegate.showBackButton(false);
+
 
 			checkFirstRun = function (){
 				$localForage.getItem('firstRun').then(function(data) {
@@ -25,6 +31,7 @@ angular.module('jobcenterapp.controllers')
 				});
 			};
 			checkFirstRun();
+
 
 	}]);
 
