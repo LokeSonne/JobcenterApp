@@ -4,7 +4,7 @@ angular.module('jobcenterapp.directives', [])
 				bindToController: true,
 				restrict: 'E',
 				controllerAs: 'vm',
-				controller: ['$log', '$ionicHistory', '$rootScope', '$state', '$ionicViewSwitcher', '$ionicViewService',function($log, $ionicHistory, $rootScope, $state, $ionicViewSwitcher, $ionicViewService){
+				controller: ['$log', '$rootScope', '$state', '$ionicViewSwitcher',function($log, $rootScope, $state, $ionicViewSwitcher){
 					var vm = this;
 					vm.goBackToMain = function () {
 						$log.debug('go back to main');

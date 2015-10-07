@@ -1,6 +1,6 @@
 
 angular.module('jobcenterapp.services', [])
-		.service('dataService', ['$http', '$q', 'Constants', '$ionicViewService','$log', '$localForage', function dataService($http, $q, Constants, $ionicViewService, $log, $localForage) {
+		.service('dataService', ['$http', '$q', 'Constants','$log', '$localForage', function dataService($http, $q, Constants, $log, $localForage) {
 			// AngularJS will instantiate a singleton by calling "new" on this function
 			var dataService = this;
 
@@ -20,7 +20,7 @@ angular.module('jobcenterapp.services', [])
 					}
 				}).success(function (data, status, headers, config) {
 					$localForage.setItem('user', model);
-					$ionicViewService.nextViewOptions({
+					$ionicHistory.nextViewOptions({
 						disableBack: true
 					});
 					d.resolve(data);
