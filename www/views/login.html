@@ -30,7 +30,7 @@
 
         <label class="item listitem  item-floating-label">
         <span class="input-label">Virksomhedens postnummer</span>
-          <input required ng-model="Login.model.companyAreacode" type="number" placeholder="Virksomhedens postnummer">
+          <input required ng-model="Login.model.companyAreacode" type="tel" placeholder="Virksomhedens postnummer">
         </label>
 
         <label class="item listitem item-input item-floating-label">
@@ -39,10 +39,10 @@
         </label>
       </ion-list>
     </form>
+    <div class="button-container padding-left padding-right">
+      <a ng-click="Login.register(Login.model)" class="button button-stable button-block">Gem</a>
+      <!--todo style knap til at være lig med footer-->
+      <!--todo indsæt ng-disabled="Login.loginForm.$invalid på button"-->
+    </div>
   </ion-content>
-  <ion-footer-bar class="footer">
-    <button  ui-sref="main" class="button button-stable button-block footer__button">Gem</button>
-    <!--todo style knap til at være lig med footer-->
-    <!--todo indsæt ng-disabled="Login.loginForm.$invalid på button"-->
-  </ion-footer-bar>
 </ion-view>

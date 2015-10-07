@@ -1,0 +1,6 @@
+.radio-icon{
+  display: flex;
+  &.ion-checkmark:before{
+    align-self: center;
+  }
+}

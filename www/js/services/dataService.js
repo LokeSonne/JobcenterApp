@@ -51,7 +51,4 @@ angular.module('jobcenterapp.services', [])
 				return d.promise
 
 			};
-
-
-
 		}]);

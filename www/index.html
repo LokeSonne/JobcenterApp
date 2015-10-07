@@ -6,6 +6,7 @@
     <title>Jobcenterapp</title>
 
     <!-- bower:css -->
+    <link rel="stylesheet" href="lib/Ionicons/css/ionicons.css" />
     <!-- endbower -->
 
 
@@ -22,15 +23,13 @@
 
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!--<link href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet">-->
-
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
 
   </head>
-    <body ng-app="jobcenterapp" animation="slide-left-right-ios7" >
-      <ion-nav-bar animation="nav-title-slide-ios7"  class="bar-positive">
-          <ion-nav-back-button ng-cloak class="button-icon icon ion-ios7-arrow-back">Back</ion-nav-back-button>
+    <body ng-app="jobcenterapp" animation="slide-left-right-ios7">
+      <ion-nav-bar animation="nav-title-slide-ios7" class="bar-positive">
+          <ion-nav-back-button ng-cloak="" class="button-icon icon ion-ios-arrow-back">Back</ion-nav-back-button>
       </ion-nav-bar>
 
       <!--The view-->
@@ -63,9 +62,11 @@
 
       <!--Directives-->
       <script src="js/directives/goBackToMain.js"></script>
+      <script src="js/directives/ionicradiofix.js"></script>
 
       <!--Services-->
       <script src="js/services/dataService.js"></script>
+      <script src="js/services/ioshotfix.js"></script>
 
       <!--Controllers-->
       <script src="js/controllers/LoginController.js"></script>

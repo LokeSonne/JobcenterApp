@@ -6,7 +6,6 @@ For example, you might change some of the default colors:
 
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
-$positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
 $energized:                       #ffc900 !default;
@@ -15,6 +14,8 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+$positive:                        rgb(11,84,128) !default;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
@@ -22,4 +23,19 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 @import "custom/footer";
 @import "custom/item";
+@import "custom/bottom-bar-override";
+@import "custom/radiobutton-fix";
+@import "custom/radio-icon";
 
+.content-container{
+  height: 100%;
+}
+.button-container{
+  position: absolute;
+  width: 100%;
+  padding-right: 20px;
+  &.padding-right{
+    padding-right: 10px;
+  }
+  bottom: 0;
+}

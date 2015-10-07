@@ -5,7 +5,8 @@ var jobcenterapp = angular.module('jobcenterapp', [
   'jobcenterapp.controllers',
   'jobcenterapp.services',
   'LocalForageModule',
-  'ngRaven'
+  'ngRaven',
+  'ngIOS9UIWebViewPatch'
   ])
 
 .run(['$ionicPlatform', '$rootScope', function($ionicPlatform, $rootScope) {
@@ -14,6 +15,7 @@ var jobcenterapp = angular.module('jobcenterapp', [
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
+
     }
     if (window.StatusBar) {
       StatusBar.styleDefault();
@@ -61,10 +63,10 @@ var jobcenterapp = angular.module('jobcenterapp', [
         templateUrl: 'views/main.html'
       })
 
-      .state('rekruttering', {
-        url: '/rekruttering',
+      .state('questionaire', {
+        url: '/questionaire',
         controller: 'MainController as Main',
-        templateUrl: 'views/rekruttering.html'
+        templateUrl: 'views/questionaire.html'
       })
 
       .state('tak', {

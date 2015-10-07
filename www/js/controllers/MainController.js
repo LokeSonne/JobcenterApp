@@ -1,5 +1,5 @@
 angular.module('jobcenterapp.controllers')
-		.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate) {
+		.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate', '$ionicHistory', '$state' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate, $ionicHistory, $state) {
 			var Main = this;
 			Main.model = {};
 			Main.alert = '';
@@ -11,6 +11,14 @@ angular.module('jobcenterapp.controllers')
 			 */
 			//$ionicNavBarDelegate.showBackButton(false);
 
+
+
+			Main.goAndRegister = function(){
+				$ionicHistory.nextViewOptions({
+					disableBack: true
+				});
+				$state.go('tak')
+			}
 			/**
 			 * Check if it is the first time the app runs
 			 */
@@ -23,7 +31,7 @@ angular.module('jobcenterapp.controllers')
 							title: 'INDSÆT TEKST ', //todo Indsæt tekst
 							template: 'INDSÆT MERE TEKST '
 						});
-						alertPopup.then(function (res) {
+						Main.alert.then(function (res) {
 							Main.alert = ''
 						});
 						Main.alert.show();
