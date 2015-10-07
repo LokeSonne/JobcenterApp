@@ -3,6 +3,7 @@ var jobcenterapp = angular.module('jobcenterapp', [
   'templates',
   'jobcenterapp.directives',
   'jobcenterapp.controllers',
+    'jobcenterapp.services',
   'LocalForageModule',
   'ngRaven'
   ])

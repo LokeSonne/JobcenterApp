@@ -4,12 +4,12 @@ angular.module('jobcenterapp.controllers')
 			Main.model = {};
 			Main.alert = '';
 
-			Main.test = 'JobcenterTits!';
+			Main.test = 'JobcenterTitel!';
 
 			/**
 			 *	Hide back button
 			 */
-			$ionicNavBarDelegate.showBackButton(false);
+			//$ionicNavBarDelegate.showBackButton(false);
 
 			/**
 			 * Check if it is the first time the app runs
