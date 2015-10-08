@@ -5,20 +5,29 @@ angular.module('jobcenterapp.controllers')
 			Main.alert = '';
 
 			Main.test = 'JobcenterTitel!';
+			Main.testObject = {
+				data1 : 'test1',
+				data2 : 'test2'
+			}
 
 			/**
 			 *	Hide back button
 			 */
-			//$ionicNavBarDelegate.showBackButton(false);
-
-
 
 			Main.goAndRegister = function(){
 				$ionicHistory.nextViewOptions({
 					disableBack: true
 				});
 				$state.go('tak')
-			}
+			};
+
+
+			Main.openQuestionaire = function(){
+				$state.go('questionaire', {
+					data : Main.testObject
+				})
+			};
+
 			/**
 			 * Check if it is the first time the app runs
 			 */
@@ -32,7 +41,7 @@ angular.module('jobcenterapp.controllers')
 							template: 'INDSÆT MERE TEKST '
 						});
 						Main.alert.then(function (res) {
-							Main.alert = ''
+							Main.alert = null;
 						});
 						Main.alert.show();
 					}

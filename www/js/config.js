@@ -65,7 +65,10 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
       .state('questionaire', {
         url: '/questionaire',
-        controller: 'MainController as Main',
+        params: {
+          data: null
+        },
+        controller: 'QuestionaireController as Questionaire',
         templateUrl: 'views/questionaire.html'
       })
 
