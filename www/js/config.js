@@ -9,9 +9,13 @@ var jobcenterapp = angular.module('jobcenterapp', [
   'ngIOS9UIWebViewPatch'
   ])
 
-.run(['$ionicPlatform', '$rootScope', function($ionicPlatform, $rootScope) {
+.run(['$ionicPlatform', '$localForage', function($ionicPlatform, $localForage) {
+
 
   $ionicPlatform.ready(function() {
+    $localForage.clear(); //Todo debug only
+
+
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
@@ -77,8 +81,16 @@ var jobcenterapp = angular.module('jobcenterapp', [
         templateUrl: 'views/tak.html'
       })
 
+
+      .state('yesorno', {
+        url: '/yesorno',
+        controller: 'YesOrNoController as YesOrNo',
+        templateUrl: 'views/yesorno.html'
+      })
+
       .state('minside', {
         url: '/minside',
+        controller: 'MyPageController as MyPage',
         templateUrl: 'views/minside.html'
       })
   ;

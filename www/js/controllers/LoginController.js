@@ -3,9 +3,15 @@ angular.module('jobcenterapp.controllers', [])
 			var Login = this;
 			Login.model = {};
 
-			//todo indsæt login kald til serveren her
+			$localForage.getItem('user').then(function(data) {
+				Login.model = data
+			});
+
+
+				//todo indsæt login kald til serveren her
 
 			Login.register = function(model){
+				$localForage.setItem('user', model);
 				//dataService.registerUser(model)
 				//		.then(function(){
 				$ionicHistory.nextViewOptions({

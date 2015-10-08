@@ -43,7 +43,6 @@ angular.module('jobcenterapp.controllers')
 						Main.alert.then(function (res) {
 							Main.alert = null;
 						});
-						Main.alert.show();
 					}
 					else{
 						$log.debug('already showed intro screen');
