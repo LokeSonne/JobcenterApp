@@ -1,6 +1,6 @@
 
 angular.module('jobcenterapp.services', [])
-		.service('dataService', ['$http', '$q', 'Constants','$log', '$localForage', function dataService($http, $q, Constants, $log, $localForage) {
+		.service('dataService', ['$http', '$q', 'Constants','$log', '$localForage', '$cordovaDevice', function dataService($http, $q, Constants, $log, $localForage, $cordovaDevice) {
 			// AngularJS will instantiate a singleton by calling "new" on this function
 			var dataService = this;
 
@@ -14,9 +14,19 @@ angular.module('jobcenterapp.services', [])
 
 				$http({
 					method: 'POST',
-					url: Constants.url + 'register',
+					url: Constants.url + 'api/User',
 					data: {
-						"model": model
+						firstName: model.firstName,
+				    lastName: model.lastName,
+				    email: model.email,
+				    phone: model.phone,
+				    companyName : model.companyName,
+				    companyPostalCode: model.companyAreacode,
+				    pno: model.Pnr,
+				    cvr: model.CVR,
+				    workType: model.workType,
+				    numberOfEmployees: model.numberOfEmployees
+						//    GUID: $cordovaDevice.getUUID();
 					}
 				}).success(function (data, status, headers, config) {
 					$localForage.setItem('user', model);
