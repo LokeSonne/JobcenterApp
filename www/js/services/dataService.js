@@ -80,6 +80,31 @@ angular.module('jobcenterapp.services', [])
 					d.reject(data)
 				});
 				return d.promise
-
 			};
+
+			/**
+			 * Handle messages
+			 * @returns {*}
+			 */
+			dataService.handleMessage= function(){
+				var d = $q.defer();
+				$http({
+					method: 'GET',
+					cache: false,
+					params :  {
+						Message_FK : Message_FK,
+						Company_FK : Company_FK,
+						WantedByCompany : WantedByCompany,
+						ContactMethod_FK : ContactMethod_FK,
+					},
+					url: Constants.url + 'api/News/'
+				}).success(function (data, status, headers, config) {
+					d.resolve(data);
+				}).error(function (data, status, headers, config) {
+					$log.debug('error in getting app structure', data);
+					d.reject(data)
+				});
+				return d.promise
+			};
+
 		}]);
