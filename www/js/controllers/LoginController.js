@@ -12,12 +12,12 @@ angular.module('jobcenterapp.controllers', [])
 
 			Login.register = function(model){
 				$localForage.setItem('user', model);
-				dataService.registerUser(model)
-					.then(function(){
+				//dataService.registerUser(model)
+				//	.then(function(){
 						$ionicHistory.nextViewOptions({
 							disableBack: true
 						});
 						$state.go('main');
-					})
+					//})
 			}
 		}]);
