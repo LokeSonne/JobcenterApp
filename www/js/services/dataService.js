@@ -16,17 +16,17 @@ angular.module('jobcenterapp.services', [])
 					method: 'POST',
 					url: Constants.url + 'api/User',
 					data: {
-						firstName: model.firstName,
-				    lastName: model.lastName,
-				    email: model.email,
-				    phone: model.phone,
-				    companyName : model.companyName,
-				    companyPostalCode: model.companyAreacode,
-				    pno: model.Pnr,
-				    cvr: model.CVR,
-				    workType: model.workType,
-				    numberOfEmployees: model.numberOfEmployees
-						//    GUID: $cordovaDevice.getUUID();
+						firstName: model.firstName || '',
+				    lastName: model.lastName || '',
+				    email: model.email || '',
+				    phone: model.phone || '',
+				    companyName : model.companyName || '',
+				    companyPostalCode: model.companyAreacode || '',
+				    pno: model.Pnr || '',
+				    cvr: model.cvr || '',
+				    workType: 1,
+				    numberOfEmployees: model.numberOfEmployees || '',
+				    GUID: $cordovaDevice.getUUID()
 					}
 				}).success(function (data, status, headers, config) {
 					$localForage.setItem('user', model);
@@ -46,12 +46,33 @@ angular.module('jobcenterapp.services', [])
 			 * Get structure of app
 			 * @returns {*}
 			 */
-			dataService.getStructure= function(){
+			dataService.getStructure = function(){
 				var d = $q.defer();
-
 				$http({
 					method: 'GET',
-					url: Constants.url + '/app'
+					cache: true,
+					url: Constants.url + 'api/Message'
+				}).success(function (data, status, headers, config) {
+					d.resolve(data);
+				}).error(function (data, status, headers, config) {
+					$log.debug('error in getting app structure', data);
+					d.reject(data)
+				});
+				return d.promise
+
+			};
+
+
+			/**
+			 * Get structure of app
+			 * @returns {*}
+			 */
+			dataService.getNews= function(){
+				var d = $q.defer();
+				$http({
+					method: 'GET',
+					cache: false,
+					url: Constants.url + 'api/News/'
 				}).success(function (data, status, headers, config) {
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {

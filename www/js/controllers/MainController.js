@@ -1,5 +1,5 @@
 angular.module('jobcenterapp.controllers')
-		.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate', '$ionicHistory', '$state' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate, $ionicHistory, $state) {
+		.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate', '$ionicHistory', '$state', '$stateParams', 'appStructure' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate, $ionicHistory, $state, $stateParams, appStructure) {
 			var Main = this;
 			Main.model = {};
 			Main.alert = '';
@@ -8,7 +8,9 @@ angular.module('jobcenterapp.controllers')
 			Main.testObject = {
 				data1 : 'test1',
 				data2 : 'test2'
-			}
+			};
+
+			$log.debug('app structure : ', appStructure);
 
 			/**
 			 *	Hide back button

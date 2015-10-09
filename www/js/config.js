@@ -5,16 +5,19 @@ var jobcenterapp = angular.module('jobcenterapp', [
   'jobcenterapp.controllers',
   'jobcenterapp.services',
   'LocalForageModule',
+  'ngCordova',
   'ngRaven',
+  'angular-cache',
   'ngIOS9UIWebViewPatch'
   ])
 
-.run(['$ionicPlatform', '$localForage', function($ionicPlatform, $localForage) {
+.run(['$ionicPlatform', '$localForage', '$rootScope', function($ionicPlatform, $localForage, $rootScope ) {
 
 
   $ionicPlatform.ready(function() {
     $localForage.clear(); //Todo debug only
 
+    // Todo implement on run. Go to main view if user object is in localstorage
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -25,9 +28,17 @@ var jobcenterapp = angular.module('jobcenterapp', [
       StatusBar.styleDefault();
     }
   });
+
+  $rootScope.$on('$stateChangeStart',function(){
+    $rootScope.showLoader = true;
+  });
+
+  $rootScope.$on('$stateChangeSuccess',function(){
+    $rootScope.showLoader= false;
+  });
 }])
 
-.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', '$logProvider', 'Constants', '$httpProvider', '$ionicConfigProvider', '$ravenProvider' ,function($stateProvider, $urlRouterProvider, $compileProvider, $logProvider, Constants, $httpProvider, $ionicConfigProvider, $ravenProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', '$logProvider', 'Constants', '$httpProvider', '$ionicConfigProvider', '$ravenProvider', 'CacheFactoryProvider' ,function($stateProvider, $urlRouterProvider, $compileProvider, $logProvider, Constants, $httpProvider, $ionicConfigProvider, $ravenProvider, CacheFactoryProvider) {
   $compileProvider.debugInfoEnabled(Constants.development);
   $logProvider.debugEnabled(Constants.development);
   $ravenProvider.development(Constants.development);
@@ -35,6 +46,8 @@ var jobcenterapp = angular.module('jobcenterapp', [
   if (ionic.Platform.isAndroid()) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
   }
+
+  angular.extend(CacheFactoryProvider.defaults, { maxAge: 15 * 60 * 1000 });
 
   $httpProvider.useApplyAsync(true);
   $ionicConfigProvider.views.maxCache(10);
@@ -63,6 +76,11 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
       .state('main', {
         url: '/main',
+        resolve: {
+          appStructure: function (dataService) {
+            return dataService.getStructure();
+          }
+        },
         controller: 'MainController as Main',
         templateUrl: 'views/main.html'
       })
@@ -82,14 +100,22 @@ var jobcenterapp = angular.module('jobcenterapp', [
       })
 
 
-      .state('yesorno', {
-        url: '/yesorno',
-        controller: 'YesOrNoController as YesOrNo',
-        templateUrl: 'views/yesorno.html'
+      .state('message', {
+        url: '/message',
+        params: {
+          message: null
+        },
+        controller: 'MessageController as Message',
+        templateUrl: 'views/message.html'
       })
 
       .state('minside', {
         url: '/minside',
+        resolve: {
+          news: function (dataService) {
+            return dataService.getNews();
+          }
+        },
         controller: 'MyPageController as MyPage',
         templateUrl: 'views/minside.html'
       })

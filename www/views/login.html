@@ -1,5 +1,5 @@
 <ion-view title="Login" class="login" ng-init="Login.loginForm.$invalid = true"> <!--todo Tilpas størrelse på tekst-->
-  <ion-content scroll="false" padding="false" class="has-header">
+  <ion-content scroll="true" padding="false" class="has-header has-footer">
     <form name="Login.loginForm">
       <ion-list>
 
@@ -37,12 +37,25 @@
         <span class="input-label">Virksomhedens Pnr</span>
           <input required ng-model="Login.model.Pnr" type="text" placeholder="Pnr">
         </label>
+
+        <label class="item listitem item-input item-floating-label">
+          <span class="input-label">Virksomhedens CVR</span>
+          <input required ng-model="Login.model.cvr" type="tel" placeholder="CVR">
+        </label>
+
+        <label class="item listitem item-input item-floating-label">
+          <span class="input-label">Antal medarbejdere</span>
+          <input required ng-model="Login.model.numberOfEmployees" type="tel" placeholder="Antal medarbejdere">
+        </label>
       </ion-list>
     </form>
-    <div class="button-container padding-left padding-right">
-      <a ng-click="Login.register(Login.model)" class="button button-stable button-block">Gem</a>
-      <!--todo style knap til at være lig med footer-->
-      <!--todo indsæt ng-disabled="Login.loginForm.$invalid på button"-->
-    </div>
+    <!--<div class="button-container padding-left padding-right">-->
+      <!--<a ng-click="Login.register(Login.model)" class="button button-stable button-block">Gem</a>-->
+      <!--&lt;!&ndash;todo style knap til at være lig med footer&ndash;&gt;-->
+      <!--&lt;!&ndash;todo indsæt ng-disabled="Login.loginForm.$invalid på button"&ndash;&gt;-->
+    <!--</div>-->
   </ion-content>
+  <ion-footer-bar class="bar bar-custom">
+    <button ng-click="Login.register(Login.model)" class="button button-stable">Gem</button>
+  </ion-footer-bar>
 </ion-view>
