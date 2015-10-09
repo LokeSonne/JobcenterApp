@@ -9297,6 +9297,9 @@ a.button {
   .listitem .input-label {
     font-size: 12px; }
 
+.item-select .input-label {
+  font-size: 14px; }
+
 .item-content {
   white-space: initial; }
 
@@ -9349,4 +9352,6 @@ a.button {
   padding-right: 20px;
   bottom: 0; }
   .button-container.padding-right {
+    padding-right: 10px; }
+  .button-container.padding {
     padding-right: 10px; }

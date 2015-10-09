@@ -3,21 +3,19 @@ angular.module('jobcenterapp.controllers', [])
 			var Login = this;
 			Login.model = {};
 
-
-			// If edit
+			// todo hvis kun hvis siden er i editmode
 			$localForage.getItem('user').then(function(data) {
 				Login.model = data
 			});
 
-
 			Login.register = function(model){
 				$localForage.setItem('user', model);
-				//dataService.registerUser(model)
-				//	.then(function(){
+				dataService.registerUser(model)
+					.then(function(){
 						$ionicHistory.nextViewOptions({
 							disableBack: true
 						});
 						$state.go('main');
-					//})
+					})
 			}
 		}]);

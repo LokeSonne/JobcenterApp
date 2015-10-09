@@ -1,6 +1,6 @@
 
 angular.module('jobcenterapp.services', [])
-		.service('dataService', ['$http', '$q', 'Constants','$log', '$localForage', '$cordovaDevice', function dataService($http, $q, Constants, $log, $localForage, $cordovaDevice) {
+		.service('dataService', ['$http', '$q', 'Constants','$log', '$localForage', '$cordovaDevice','$ionicHistory', function dataService($http, $q, Constants, $log, $localForage, $cordovaDevice, $ionicHistory) {
 			// AngularJS will instantiate a singleton by calling "new" on this function
 			var dataService = this;
 
@@ -25,8 +25,8 @@ angular.module('jobcenterapp.services', [])
 				    pno: model.Pnr || '',
 				    cvr: model.cvr || '',
 				    workType: 1,
-				    numberOfEmployees: model.numberOfEmployees || '',
-				    GUID: $cordovaDevice.getUUID()
+				    numberOfEmployees: model.numberOfEmployees || ''
+				    //GUID: Userid?
 					}
 				}).success(function (data, status, headers, config) {
 					$localForage.setItem('user', model);

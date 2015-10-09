@@ -11,11 +11,17 @@ var jobcenterapp = angular.module('jobcenterapp', [
   'ngIOS9UIWebViewPatch'
   ])
 
-.run(['$ionicPlatform', '$localForage', '$rootScope', function($ionicPlatform, $localForage, $rootScope ) {
+.run(['$ionicPlatform', '$localForage', '$rootScope','$state', function($ionicPlatform, $localForage, $rootScope, $state ) {
 
 
   $ionicPlatform.ready(function() {
-    $localForage.clear(); //Todo debug only
+
+    $localForage.clear();
+    $localForage.getItem('user').then(function(data) {
+      if(data !== null && data.firstName){
+        $state.go('main')
+      }
+    });
 
     // Todo implement on run. Go to main view if user object is in localstorage
 
