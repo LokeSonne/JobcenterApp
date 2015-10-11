@@ -48,7 +48,7 @@
             Antal medarbejdere*
           </div>
           <select required ng-model="Login.model.numberOfEmployees">
-            <option value="1"selected>1-5</option>
+            <option value="1" selected>1-5</option>
             <option value="2">6-25</option>
             <option value="3">26-100</option>
             <option value="4">101-250</option>
@@ -60,6 +60,8 @@
     </form>
   </ion-content>
   <ion-footer-bar class="bar bar-custom">
-    <button ng-disabled="Login.loginForm.$invalid" ng-click="Login.register(Login.model)" class="button button-stable">Gem</button>
+    <button ng-click="Login.register(Login.model)" class="button button-stable">Gem</button>
+
+    <!--ng-disabled="Login.loginForm.$invalid"-->
   </ion-footer-bar>
 </ion-view>

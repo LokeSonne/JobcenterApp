@@ -3,14 +3,16 @@ angular.module('jobcenterapp.controllers')
 			var Main = this;
 			Main.model = {};
 			Main.alert = '';
-
-			Main.test = 'JobcenterTitel!';
-			Main.testObject = {
-				data1 : 'test1',
-				data2 : 'test2'
-			};
+			Main.navigation = [];
 
 			$log.debug('app structure : ', appStructure);
+
+
+			//build link structucture
+			angular.forEach(appStructure, function(value, key) {
+				Main.navigation[key] = value.name
+			});
+
 
 			/**
 			 *	Hide back button
@@ -24,9 +26,9 @@ angular.module('jobcenterapp.controllers')
 			};
 
 
-			Main.openQuestionaire = function(){
+			Main.openQuestionaire = function(index){
 				$state.go('questionaire', {
-					data : Main.testObject
+					data : appStructure[index]
 				})
 			};
 

@@ -22,10 +22,10 @@ angular.module('jobcenterapp.services', [])
 				    phone: model.phone || '',
 				    companyName : model.companyName || '',
 				    companyPostalCode: model.companyAreacode || '',
-				    pno: model.Pnr || '',
+				    pno: model.Pnr || null,
 				    cvr: model.cvr || '',
 				    workType: 1,
-				    numberOfEmployees: model.numberOfEmployees || ''
+				    numberOfEmployees: parseInt(model.numberOfEmployees) || ''
 				    //GUID: Userid?
 					}
 				}).success(function (data, status, headers, config) {

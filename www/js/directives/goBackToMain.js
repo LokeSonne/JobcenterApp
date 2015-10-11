@@ -20,3 +20,27 @@ angular.module('jobcenterapp.directives', [])
 	});
 
 
+//var fName = "Matthias";
+//var lName = "Fuglsang";
+//var eMail = "a@a.dk";
+//var iphone = "12345678";
+//var icompanyName = "Test";
+//var icompanyPostalCode = "1234";
+//var ipno = "12345678";
+//var icvr = "12345678";
+//var iworkType = 1;
+//var inumberOfEmployees = 1;
+
+//var params = {
+//    firstName: fName,
+//    lastName: lName,
+//    email: eMail,
+//    phone: iphone,
+//    companyName : icompanyName,
+//    companyPostalCode: icompanyPostalCode,
+//    pno: ipno,
+//    cvr: icvr,
+//    workType: iworkType,
+//    numberOfEmployees: inumberOfEmployees,
+//    GUID: iGUID
+//};
