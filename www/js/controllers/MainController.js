@@ -7,12 +7,10 @@ angular.module('jobcenterapp.controllers')
 
 			$log.debug('app structure : ', appStructure);
 
-
 			//build link structucture
 			angular.forEach(appStructure, function(value, key) {
 				Main.navigation[key] = value.name
 			});
-
 
 			/**
 			 *	Hide back button
@@ -24,7 +22,6 @@ angular.module('jobcenterapp.controllers')
 				});
 				$state.go('tak')
 			};
-
 
 			Main.openQuestionaire = function(index){
 				$state.go('questionaire', {
