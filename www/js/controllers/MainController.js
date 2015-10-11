@@ -15,7 +15,6 @@ angular.module('jobcenterapp.controllers')
 			/**
 			 *	Hide back button
 			 */
-
 			Main.goAndRegister = function(){
 				$ionicHistory.nextViewOptions({
 					disableBack: true
