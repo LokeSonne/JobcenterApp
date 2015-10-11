@@ -3,7 +3,7 @@
 
     <h4 class="text-center">Hvad har du brug for?</h4>
     <ul class="list">
-      <ion-radio-fix ng-repeat="choice in Questionaire.page.messages$" ng-model="choice" ng-value="'A'">Jeg har akut brug for medarbejdere</ion-radio-fix>
+      <ion-radio-fix ng-repeat="choice in Questionaire.page.messages" ng-value="'A'">{{choice.name}}</ion-radio-fix>
     </ul>
 
     <div class="padding button-container">
