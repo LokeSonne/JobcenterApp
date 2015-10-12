@@ -9343,6 +9343,12 @@ a.button {
   .radio-icon.ion-checkmark:before {
     align-self: center; }
 
+.button-yellow {
+  background-color: #CAD11C; }
+
+.button-blue {
+  background-color: #004578; }
+
 .content-container {
   height: 100%; }
 
