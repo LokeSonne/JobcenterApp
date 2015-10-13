@@ -10,13 +10,22 @@ angular.module('jobcenterapp.controllers')
 			 */
 
 			Message.answer = function(answer){
-				$ionicHistory.nextViewOptions({
-					disableBack: true
-				});
-				$ionicViewSwitcher.nextDirection('back');
-				$log.debug('answer:', answer);
-				//dataService.handleMessage(answer); //todo anwer objektet skal se ud som params i nedenstående
-				$state.go('main')
+				if(answer === 'no') {
+					$ionicHistory.nextViewOptions({
+						disableBack: true
+					});
+					$ionicViewSwitcher.nextDirection('back');
+					$log.debug('answer:', answer);
+					$state.go('main')
+				}
+				else{
+					$ionicHistory.nextViewOptions({
+						disableBack: true
+					});
+					$log.debug('answer:', answer);
+					//dataService.handleMessage(answer); //todo anwer objektet skal se ud som params i nedenstående
+					$state.go('tak')
+				}
 			};
 
 

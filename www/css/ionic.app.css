@@ -9296,6 +9296,13 @@ a.button {
   padding: 2px 0 2px 16px; }
   .listitem .input-label {
     font-size: 12px; }
+  .listitem input {
+    width: 90%; }
+  .listitem.item-select {
+    vertical-align: bottom;
+    height: 62px;
+    bottom: 0;
+    margin-bottom: 20px; }
 
 .item-select .input-label {
   font-size: 14px; }
