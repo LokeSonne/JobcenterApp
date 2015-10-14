@@ -9,7 +9,6 @@ angular.module('jobcenterapp.controllers', [])
 			});
 
 			Login.register = function(model){
-				$localForage.setItem('user', model);
 				//dataService.registerUser(model)
 				//	.then(function(){
 						$ionicHistory.nextViewOptions({

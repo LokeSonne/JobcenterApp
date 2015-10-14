@@ -11,19 +11,22 @@ var jobcenterapp = angular.module('jobcenterapp', [
   'ngIOS9UIWebViewPatch'
   ])
 
-.run(['$ionicPlatform', '$localForage', '$rootScope','$state', function($ionicPlatform, $localForage, $rootScope, $state ) {
+.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', function($ionicPlatform, $localForage, $rootScope, $state, $timeout) {
 
+  $rootScope.showLoader;
+  $rootScope.fromState;
 
   $ionicPlatform.ready(function() {
 
+    /**
+     * Check if user is logged in. Redirect to main if true
+     */
     $localForage.clear();
     $localForage.getItem('user').then(function(data) {
       if(data !== null && data.firstName){
         $state.go('main')
       }
     });
-
-    // Todo implement on run. Go to main view if user object is in localstorage
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -39,8 +42,14 @@ var jobcenterapp = angular.module('jobcenterapp', [
     $rootScope.showLoader = true;
   });
 
-  $rootScope.$on('$stateChangeSuccess',function(){
-    $rootScope.showLoader= false;
+  $rootScope.$on('$stateChangeSuccess',function(ev, to, toParams, from, fromParams){
+    $rootScope.showLoader = false;
+    if(from.name === 'minside'){
+      $rootScope.loginTitle  = 'Min profil';
+    }
+    else{
+      $rootScope.loginTitle  = 'Login';
+    }
   });
 }])
 
@@ -49,10 +58,17 @@ var jobcenterapp = angular.module('jobcenterapp', [
   $logProvider.debugEnabled(Constants.development);
   $ravenProvider.development(Constants.development);
 
+  /**
+   * Deaktiver javascript scrolling på android
+   */
   if (ionic.Platform.isAndroid()) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
   }
 
+  /**
+   * caching variabel. Cacher http response i 15 minutter,
+   * dvs for hver gang appen bruges tilgåes hvert endpoint kun en gang
+   */
   angular.extend(CacheFactoryProvider.defaults, { maxAge: 15 * 60 * 1000 });
 
   $httpProvider.useApplyAsync(true);
@@ -71,6 +87,7 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
       .state('login', {
         url: '/login',
+        cache: false,
         controller: 'LoginController as Login',
         templateUrl: 'views/login.html'
       })

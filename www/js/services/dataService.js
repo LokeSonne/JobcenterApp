@@ -12,21 +12,49 @@ angular.module('jobcenterapp.services', [])
 			dataService.registerUser = function(model){
 				var d = $q.defer();
 
+				//var params = {
+//    firstName: fName,
+//    lastName: lName,
+//    email: eMail,
+//    phone: iphone,
+//    companyName : icompanyName,
+//    companyPostalCode: icompanyPostalCode,
+//    pno: ipno,
+//    cvr: icvr,
+//    workType: iworkType,
+//    numberOfEmployees: inumberOfEmployees,
+//    GUID: iGUID
+//};
+
 				$http({
 					method: 'POST',
 					url: Constants.url + 'api/User',
+					timeout : 5000,
 					data: {
-						firstName: model.firstName || '',
-				    lastName: model.lastName || '',
-				    email: model.email || '',
-				    phone: model.phone || '',
-				    companyName : model.companyName || '',
-				    companyPostalCode: model.companyAreacode || '',
-				    pno: model.Pnr || null,
-				    cvr: model.cvr || '',
-				    workType: 1,
-				    numberOfEmployees: parseInt(model.numberOfEmployees) || ''
-				    //GUID: Userid?
+	/*					firstName: model.firstName || '',
+						lastName: model.lastName || '',
+						email: model.email || '',
+						phone: model.phone || '',
+						companyName : model.companyName || '',
+						companyPostalCode: model.companyAreacode || '',
+						pno: model.Pnr || null,
+						cvr: model.cvr || '',
+						workType: 1,
+						numberOfEmployees: parseInt(model.numberOfEmployees) || ''
+				    //GUID: Userid?	*/
+				    //
+				    //
+				    firstName: 'Matthias',
+						lastName: 'Fuglsang',
+						email: 'a@a.dk',
+						phone: '12345678',
+						companyName : 'Test',
+						companyPostalCode: '1234',
+						pno: '12345678',
+						cvr: '12345678',
+						workType: 1,
+						numberOfEmployees: 1,
+				    GUID: 'APFLGUkeFAUxsCc2t2g5aEJTPdavZNq8'
 					}
 				}).success(function (data, status, headers, config) {
 					$localForage.setItem('user', model);
@@ -50,6 +78,7 @@ angular.module('jobcenterapp.services', [])
 				var d = $q.defer();
 				$http({
 					method: 'GET',
+					timeout : 5000,
 					cache: true,
 					url: Constants.url + 'api/Message'
 				}).success(function (data, status, headers, config) {
@@ -71,6 +100,7 @@ angular.module('jobcenterapp.services', [])
 				var d = $q.defer();
 				$http({
 					method: 'GET',
+					timeout : 5000,
 					cache: false,
 					url: Constants.url + 'api/News/'
 				}).success(function (data, status, headers, config) {
@@ -90,6 +120,7 @@ angular.module('jobcenterapp.services', [])
 				var d = $q.defer();
 				$http({
 					method: 'GET',
+
 					cache: false,
 					params :  {
 						Message_FK : Message_FK,

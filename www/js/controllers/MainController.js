@@ -28,6 +28,8 @@ angular.module('jobcenterapp.controllers')
 				})
 			};
 
+
+
 			/**
 			 * Check if it is the first time the app runs
 			 */
@@ -37,8 +39,7 @@ angular.module('jobcenterapp.controllers')
 					if(data === null) {
 						$localForage.setItem('firstRun', true);
 						Main.alert = $ionicPopup.alert({
-							title: 'INDSÆT TEKST ', //todo Indsæt tekst
-							template: 'INDSÆT MERE TEKST '
+							title: 'Tak! <br> Du kan nu vælge et emne som du vil kontaktes om, eller se nyheder fra os på ”Min side”'
 						});
 						Main.alert.then(function (res) {
 							Main.alert = null;
