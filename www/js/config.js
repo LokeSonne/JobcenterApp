@@ -11,7 +11,7 @@ var jobcenterapp = angular.module('jobcenterapp', [
   'ngIOS9UIWebViewPatch'
   ])
 
-.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', function($ionicPlatform, $localForage, $rootScope, $state, $timeout) {
+.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', 'Constants', function($ionicPlatform, $localForage, $rootScope, $state, $timeout, Constants) {
 
   $rootScope.showLoader;
   $rootScope.fromState;

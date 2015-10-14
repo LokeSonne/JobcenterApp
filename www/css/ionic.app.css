@@ -9350,7 +9350,7 @@ a.button {
   .radio-icon.ion-checkmark:before {
     align-self: center; }
 
-.font-positive {
+.font-positive, .previous-title {
   color: #004578; }
 
 .font-bold {

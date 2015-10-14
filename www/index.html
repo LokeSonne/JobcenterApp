@@ -6,7 +6,7 @@
     <title>Jobcenterapp</title>
 
     <!-- bower:css -->
-    <link rel="stylesheet" href="lib/Ionicons/css/ionicons.css" />
+    <link rel="stylesheet" href="lib/Ionicons/css/ionicons.css">
     <!-- endbower -->
 
     <meta http-equiv="Content-Security-Policy" content="
@@ -37,12 +37,12 @@
     <body ng-app="jobcenterapp" animation="slide-left-right-ios7">
 
       <ion-nav-bar animation="nav-title-slide-ios7" class="bar-positive">
-          <ion-nav-back-button ng-cloak></ion-nav-back-button>
+          <ion-nav-back-button ng-cloak=""> </ion-nav-back-button>
       </ion-nav-bar>
 
       <!--The view-->
       <ion-nav-view>
-        <div ng-show="$root.showLoader" ng-cloak>
+        <div ng-show="$root.showLoader" ng-cloak="">
           <ion-spinner></ion-spinner>
         </div>
       </ion-nav-view>
