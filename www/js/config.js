@@ -18,10 +18,16 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
   $ionicPlatform.ready(function() {
 
+
+    /**
+     * Clear localstorage on run. Usefull for debugging
+     */
+    if(Constants.development === true){
+      $localForage.clear();
+    }
     /**
      * Check if user is logged in. Redirect to main if true
      */
-    $localForage.clear();
     $localForage.getItem('user').then(function(data) {
       if(data !== null && data.firstName){
         $state.go('main')
@@ -57,6 +63,7 @@ var jobcenterapp = angular.module('jobcenterapp', [
   $compileProvider.debugInfoEnabled(Constants.development);
   $logProvider.debugEnabled(Constants.development);
   $ravenProvider.development(Constants.development);
+  $ionicConfigProvider.backButton.text('');
 
   /**
    * Deaktiver javascript scrolling på android
@@ -74,78 +81,73 @@ var jobcenterapp = angular.module('jobcenterapp', [
   $httpProvider.useApplyAsync(true);
   $ionicConfigProvider.views.maxCache(10);
   $ionicConfigProvider.views.swipeBackEnabled(false);
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
+
+
   $stateProvider
+    .state('intro', {
+      url: '/',
+      templateUrl: 'views/intro.html'
+    })
 
-      .state('intro', {
-        url: '/',
-        templateUrl: 'views/intro.html'
-      })
+    .state('login', {
+      url: '/login',
+      cache: false,
+      controller: 'LoginController as Login',
+      templateUrl: 'views/login.html'
+    })
 
-      .state('login', {
-        url: '/login',
-        cache: false,
-        controller: 'LoginController as Login',
-        templateUrl: 'views/login.html'
-      })
+    .state('hvorfor', {
+      url: '/hvorfor',
+      templateUrl: 'views/hvorfor.html'
+    })
 
-      .state('hvorfor', {
-        url: '/hvorfor',
-        templateUrl: 'views/hvorfor.html'
-      })
+    .state('main', {
+      url: '/main',
+      resolve: {
+        appStructure: function (dataService) {
+          return dataService.getStructure();
+        }
+      },
+      controller: 'MainController as Main',
+      templateUrl: 'views/main.html'
+    })
 
-      .state('main', {
-        url: '/main',
-        resolve: {
-          appStructure: function (dataService) {
-            return dataService.getStructure();
-          }
-        },
-        controller: 'MainController as Main',
-        templateUrl: 'views/main.html'
-      })
+    .state('questionaire', {
+      url: '/questionaire',
+      params: {
+        data: null
+      },
+      controller: 'QuestionaireController as Questionaire',
+      templateUrl: 'views/questionaire.html'
+    })
 
-      .state('questionaire', {
-        url: '/questionaire',
-        params: {
-          data: null
-        },
-        controller: 'QuestionaireController as Questionaire',
-        templateUrl: 'views/questionaire.html'
-      })
-
-      .state('tak', {
-        url: '/tak',
-        templateUrl: 'views/tak.html'
-      })
+    .state('tak', {
+      url: '/tak',
+      templateUrl: 'views/tak.html'
+    })
 
 
-      .state('message', {
-        url: '/message',
-        params: {
-          message: null
-        },
-        controller: 'MessageController as Message',
-        templateUrl: 'views/message.html'
-      })
+    .state('message', {
+      url: '/message',
+      params: {
+        message: null
+      },
+      controller: 'MessageController as Message',
+      templateUrl: 'views/message.html'
+    })
 
-      .state('minside', {
-        url: '/minside',
-        resolve: {
-          news: function (dataService) {
-            return dataService.getNews();
-          }
-        },
-        controller: 'MyPageController as MyPage',
-        templateUrl: 'views/minside.html'
-      })
-  ;
+    .state('minside', {
+      url: '/minside',
+      resolve: {
+        news: function (dataService) {
+          return dataService.getNews();
+        }
+      },
+      controller: 'MyPageController as MyPage',
+      templateUrl: 'views/minside.html'
+    });
 
   // if none of the above states are matched, use this as the fallback
-
   $urlRouterProvider.otherwise('/');
 
 }]);

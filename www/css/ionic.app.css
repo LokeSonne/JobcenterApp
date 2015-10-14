@@ -9350,6 +9350,18 @@ a.button {
   .radio-icon.ion-checkmark:before {
     align-self: center; }
 
+.font-positive {
+  color: #004578; }
+
+.font-bold {
+  font-weight: 500; }
+
+.font-normal {
+  font-weight: 300; }
+
+.font-light {
+  font-weight: 200; }
+
 .content-container {
   height: 100%; }
   .content-container .full-width {
