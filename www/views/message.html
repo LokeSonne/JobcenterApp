@@ -1,0 +1,21 @@
+<ion-view class="slide-left-right" title="{{::Message.message.name}}">
+  <ion-content padding="true" scroll="false" class="has-header">
+
+    <div class="row row-center">
+      <div class="col">
+        <h3 class="text-center">{{::Message.message.name}}</h3>
+        <p class="text-center">{{::Message.message.text}}</p>
+      </div>
+    </div>
+
+    <div class="button-container row">
+      <div class="col col-50">
+        <button ng-click="Message.answer('no')" class="button button-stable button-block">Nej tak</button>
+      </div>
+      <div class="col col-50">
+        <button ng-click="Message.answer('yes')" class="button button-positive button-block">Ja tak</button>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

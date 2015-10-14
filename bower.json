@@ -8,6 +8,8 @@
   "dependencies": {
     "angular-localforage": "~1.2.3",
     "angular-raven": "~0.5.11",
-    "Ionicons": "ionicons#~2.0.1"
+    "Ionicons": "ionicons#~2.0.1",
+    "ngCordova": "~0.1.20-alpha",
+    "angular-cache": "~4.3.2"
   }
 }

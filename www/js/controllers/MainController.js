@@ -1,19 +1,20 @@
 angular.module('jobcenterapp.controllers')
-		.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate', '$ionicHistory', '$state' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate, $ionicHistory, $state) {
+		.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate', '$ionicHistory', '$state', '$stateParams', 'appStructure' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate, $ionicHistory, $state, $stateParams, appStructure) {
 			var Main = this;
 			Main.model = {};
 			Main.alert = '';
+			Main.navigation = [];
 
-			Main.test = 'JobcenterTitel!';
-			Main.testObject = {
-				data1 : 'test1',
-				data2 : 'test2'
-			}
+			$log.debug('app structure : ', appStructure);
+
+			//build link structucture
+			angular.forEach(appStructure, function(value, key) {
+				Main.navigation[key] = value.name
+			});
 
 			/**
 			 *	Hide back button
 			 */
-
 			Main.goAndRegister = function(){
 				$ionicHistory.nextViewOptions({
 					disableBack: true
@@ -21,12 +22,13 @@ angular.module('jobcenterapp.controllers')
 				$state.go('tak')
 			};
 
-
-			Main.openQuestionaire = function(){
+			Main.openQuestionaire = function(index){
 				$state.go('questionaire', {
-					data : Main.testObject
+					data : appStructure[index]
 				})
 			};
+
+
 
 			/**
 			 * Check if it is the first time the app runs
@@ -37,8 +39,7 @@ angular.module('jobcenterapp.controllers')
 					if(data === null) {
 						$localForage.setItem('firstRun', true);
 						Main.alert = $ionicPopup.alert({
-							title: 'INDSÆT TEKST ', //todo Indsæt tekst
-							template: 'INDSÆT MERE TEKST '
+							title: 'Tak! <br> Du kan nu vælge et emne som du vil kontaktes om, eller se nyheder fra os på ”Min side”'
 						});
 						Main.alert.then(function (res) {
 							Main.alert = null;

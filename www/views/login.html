@@ -1,48 +1,67 @@
-<ion-view title="Login" class="login" ng-init="Login.loginForm.$invalid = true"> <!--todo Tilpas størrelse på tekst-->
-  <ion-content scroll="false" padding="false" class="has-header">
+<ion-view ng-init="Login.loginForm.$invalid = true" title="{{$root.loginTitle}}" class="login" >
+  <ion-content scroll="true" padding="false" class="has-header has-footer">
+
     <form name="Login.loginForm">
       <ion-list>
-
         <label class="item listitem item-input item-floating-label">
-          <span class="input-label">Fornavn</span>
-          <input required ng-model="Login.model.firstName" type="text" placeholder="Fornavn">
+          <span class="input-label">Fornavn*</span>
+          <input required ng-model="Login.model.firstName" type="text" placeholder="Fornavn (skal udfyldes)">
         </label>
 
         <label class="item listitem item-input item-floating-label">
-        <span class="input-label">Efternavn</span>
-          <input required ng-model="Login.model.lastName" type="text" placeholder="Efternavn">
+        <span class="input-label">Efternavn*</span>
+          <input required ng-model="Login.model.lastName" type="text" placeholder="Efternavn (skal udfyldes)">
         </label>
 
         <label class="item listitem item-input item-floating-label">
-        <span class="input-label">Email</span>
-          <input required ng-model="Login.model.email" type="email" placeholder="Email">
+        <span class="input-label">Email*</span>
+          <input required ng-model="Login.model.email" type="email" placeholder="Email (skal udfyldes)">
         </label>
 
         <label class="item listitem item-input item-floating-label">
-        <span class="input-label">Telefon</span>
-          <input required ng-model="Login.model.phone" type="tel" placeholder="Telefon">
+        <span class="input-label">Telefon*</span>
+          <input required ng-model="Login.model.phone" type="tel" placeholder="Telefon (skal udfyldes)">
         </label>
 
         <label class="item listitem item-input item-floating-label">
-        <span class="input-label">Virksomhedens navn</span>
-          <input required ng-model="Login.model.companyName" type="text" placeholder="Virksomhedens navn">
+        <span class="input-label">Virksomhedens navn*</span>
+          <input required ng-model="Login.model.companyName" type="text" placeholder="Virksomhedens navn (skal udfyldes)">
         </label>
 
         <label class="item listitem  item-floating-label">
-        <span class="input-label">Virksomhedens postnummer</span>
-          <input required ng-model="Login.model.companyAreacode" type="tel" placeholder="Virksomhedens postnummer">
+        <span class="input-label">Virksomhedens postnummer*</span>
+          <input required ng-model="Login.model.companyAreacode" type="tel" placeholder="Virksomhedens postnummer (skal udfyldes)">
         </label>
 
         <label class="item listitem item-input item-floating-label">
         <span class="input-label">Virksomhedens Pnr</span>
-          <input required ng-model="Login.model.Pnr" type="text" placeholder="Pnr">
+          <input ng-model="Login.model.Pnr" type="tel" placeholder="Virksomhedens Pnr">
+        </label>
+
+        <label class="item listitem item-input item-floating-label">
+          <span class="input-label">Virksomhedens CVR*</span>
+          <input required ng-model="Login.model.cvr" type="tel" placeholder="Virksomhedens CVR (skal udfyldes)">
+        </label>
+
+        <label class="item listitem item-input item-select ">
+          <div class="input-label">
+            Antal medarbejdere (skal udfyldes)
+          </div>
+          <select required ng-model="Login.model.numberOfEmployees">
+            <option value="1" selected>1-5</option>
+            <option value="2">6-25</option>
+            <option value="3">26-100</option>
+            <option value="4">101-250</option>
+            <option value="5">250-1000</option>
+            <option value="5">1000+</option>
+          </select>
         </label>
       </ion-list>
     </form>
-    <div class="button-container padding-left padding-right">
-      <a ng-click="Login.register(Login.model)" class="button button-stable button-block">Gem</a>
-      <!--todo style knap til at være lig med footer-->
-      <!--todo indsæt ng-disabled="Login.loginForm.$invalid på button"-->
-    </div>
   </ion-content>
+  <ion-footer-bar class="bar bar-custom">
+    <button ng-click="Login.register(Login.model)" class="button button-positive">Gem</button>
+
+    <!--ng-disabled="Login.loginForm.$invalid"-->
+  </ion-footer-bar>
 </ion-view>

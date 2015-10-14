@@ -3,6 +3,23 @@
   .input-label{
     font-size: 12px;
   }
+
+  input{
+    width: 90%;
+  }
+
+  &.item-select{
+    vertical-align: bottom;
+    height: 62px;
+    bottom: 0;
+    margin-bottom: 20px;
+  }
+}
+
+.item-select{
+  .input-label {
+    font-size: 14px;
+  }
 }
 
 .item-content{

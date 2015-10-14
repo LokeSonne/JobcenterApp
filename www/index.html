@@ -6,9 +6,16 @@
     <title>Jobcenterapp</title>
 
     <!-- bower:css -->
-    <link rel="stylesheet" href="lib/Ionicons/css/ionicons.css">
+    <link rel="stylesheet" href="lib/Ionicons/css/ionicons.css" />
     <!-- endbower -->
 
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src * &apos;self&apos; data: gap: https://ssl.gstatic.com file:;
+      style-src &apos;self&apos; &apos;unsafe-inline&apos; https:;
+      script-src * &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; https: file:;
+      connect-src * &apos;self&apos; &apos;unsafe-eval&apos; &apos;unsafe-inline&apos; https: file:;
+      img-src	&apos;self&apos; file: http: https: data:;
+      font-src &apos;self&apos; https:">
 
     <style>
       [ng:cloak],
@@ -28,18 +35,25 @@
 
   </head>
     <body ng-app="jobcenterapp" animation="slide-left-right-ios7">
+
       <ion-nav-bar animation="nav-title-slide-ios7" class="bar-positive">
-          <ion-nav-back-button ng-cloak="" class="button-icon icon ion-ios-arrow-back">Back</ion-nav-back-button>
+          <ion-nav-back-button ng-cloak class="button-icon icon ion-ios-arrow-back">Tilbage</ion-nav-back-button>
       </ion-nav-bar>
 
       <!--The view-->
-      <ion-nav-view></ion-nav-view>
+      <ion-nav-view>
+        <div ng-show="$root.showLoader" ng-cloak="">
+          <ion-spinner></ion-spinner>
+        </div>
+      </ion-nav-view>
 
       <!-- bower:js -->
       <script src="lib/localforage/dist/localforage.js"></script>
       <script src="lib/angular-localforage/dist/angular-localForage.js"></script>
       <script src="lib/raven-js/dist/raven.js"></script>
       <script src="lib/angular-raven/angular-raven.js"></script>
+      <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+      <script src="lib/angular-cache/dist/angular-cache.js"></script>
       <!-- endbower -->
 
       <script>
@@ -72,7 +86,7 @@
       <script src="js/controllers/LoginController.js"></script>
       <script src="js/controllers/MainController.js"></script>
       <script src="js/controllers/QuestionaireController.js"></script>
-      <script src="js/controllers/YesOrNoController.js"></script>
+      <script src="js/controllers/MessageController.js"></script>
       <script src="js/controllers/MyPageController.js"></script>
 
     </body>
