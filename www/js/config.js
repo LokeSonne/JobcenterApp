@@ -11,14 +11,12 @@ var jobcenterapp = angular.module('jobcenterapp', [
   'ngIOS9UIWebViewPatch'
   ])
 
-.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', 'Constants', function($ionicPlatform, $localForage, $rootScope, $state, $timeout, Constants) {
+.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', 'Constants', '$ionicHistory', function($ionicPlatform, $localForage, $rootScope, $state, $timeout, Constants, $ionicHistory) {
 
-  $rootScope.showLoader;
+  $rootScope.showLoader = true;
   $rootScope.fromState;
 
   $ionicPlatform.ready(function() {
-
-
     /**
      * Clear localstorage on run. Usefull for debugging
      */
@@ -32,6 +30,14 @@ var jobcenterapp = angular.module('jobcenterapp', [
       if(data !== null && data.firstName){
         $state.go('main')
       }
+      else{
+        $state.go('intro')
+      }
+      $ionicHistory.nextViewOptions({
+        historyRoot: true,
+        disableBack: true
+      });
+      $rootScope.showLoader = false;
     });
 
     if (window.cordova && window.cordova.plugins.Keyboard) {

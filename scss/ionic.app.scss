@@ -36,6 +36,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 .content-container{
   height: 100%;
+  &.row-center{
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
   .full-width {
     width: 100%;
   }

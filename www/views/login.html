@@ -5,32 +5,32 @@
       <ion-list>
         <label class="item listitem item-input item-floating-label">
           <span class="input-label">Fornavn*</span>
-          <input required ng-model="Login.model.firstName" type="text" placeholder="Fornavn (skal udfyldes)">
+          <input required ng-model="Login.model.firstName" type="text" placeholder="Fornavn*">
         </label>
 
         <label class="item listitem item-input item-floating-label">
         <span class="input-label">Efternavn*</span>
-          <input required ng-model="Login.model.lastName" type="text" placeholder="Efternavn (skal udfyldes)">
+          <input required ng-model="Login.model.lastName" type="text" placeholder="Efternavn*">
         </label>
 
         <label class="item listitem item-input item-floating-label">
         <span class="input-label">Email*</span>
-          <input required ng-model="Login.model.email" type="email" placeholder="Email (skal udfyldes)">
+          <input required ng-model="Login.model.email" type="email" placeholder="Email*">
         </label>
 
         <label class="item listitem item-input item-floating-label">
         <span class="input-label">Telefon*</span>
-          <input required ng-model="Login.model.phone" type="tel" placeholder="Telefon (skal udfyldes)">
+          <input required ng-model="Login.model.phone" type="tel" placeholder="Telefon*">
         </label>
 
         <label class="item listitem item-input item-floating-label">
         <span class="input-label">Virksomhedens navn*</span>
-          <input required ng-model="Login.model.companyName" type="text" placeholder="Virksomhedens navn (skal udfyldes)">
+          <input required ng-model="Login.model.companyName" type="text" placeholder="Virksomhedens navn*">
         </label>
 
         <label class="item listitem  item-floating-label">
         <span class="input-label">Virksomhedens postnummer*</span>
-          <input required ng-model="Login.model.companyAreacode" type="tel" placeholder="Virksomhedens postnummer (skal udfyldes)">
+          <input required ng-model="Login.model.companyAreacode" type="tel" placeholder="Virksomhedens postnummer*">
         </label>
 
         <label class="item listitem item-input item-floating-label">
@@ -39,8 +39,8 @@
         </label>
 
         <label class="item listitem item-input item-floating-label">
-          <span class="input-label">Virksomhedens CVR*</span>
-          <input required ng-model="Login.model.cvr" type="tel" placeholder="Virksomhedens CVR (skal udfyldes)">
+          <span class="input-label">Virksomhedens CVR</span>
+          <input ng-model="Login.model.cvr" type="tel" placeholder="Virksomhedens CVR">
         </label>
 
         <label class="item listitem item-input item-select ">
@@ -60,8 +60,6 @@
     </form>
   </ion-content>
   <ion-footer-bar class="bar bar-custom">
-    <button ng-click="Login.register(Login.model)" class="button button-positive">Gem</button>
-
-    <!--ng-disabled="Login.loginForm.$invalid"-->
+    <button ng-disabled="Login.loginForm.$invalid" ng-click="Login.register(Login.model)" class="button button-positive">Gem</button>
   </ion-footer-bar>
 </ion-view>

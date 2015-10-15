@@ -4,18 +4,17 @@
     <div class="row row-center">
       <div class="col">
         <h3 class="text-center">{{::Message.message.name}}</h3>
-        <p class="text-center">{{::Message.message.text}}</p>
+        <h3 class="text-center font-normal">{{::Message.message.text}}</h3>
       </div>
     </div>
 
     <div class="button-container row">
       <div class="col col-50">
-        <button ng-click="Message.answer('no')" class="button button-stable button-block">Nej tak</button>
+        <button ng-click="Message.answer('false')" class="button button-stable button-block">Nej tak</button>
       </div>
       <div class="col col-50">
-        <button ng-click="Message.answer('yes')" class="button button-positive button-block">Ja tak</button>
+        <button ng-click="Message.answer('true')" class="button button-positive button-block">Ja tak</button>
       </div>
     </div>
-
   </ion-content>
 </ion-view>

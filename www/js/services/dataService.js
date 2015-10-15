@@ -12,20 +12,6 @@ angular.module('jobcenterapp.services', [])
 			dataService.registerUser = function(model){
 				var d = $q.defer();
 
-				//var params = {
-//    firstName: fName,
-//    lastName: lName,
-//    email: eMail,
-//    phone: iphone,
-//    companyName : icompanyName,
-//    companyPostalCode: icompanyPostalCode,
-//    pno: ipno,
-//    cvr: icvr,
-//    workType: iworkType,
-//    numberOfEmployees: inumberOfEmployees,
-//    GUID: iGUID
-//};
-
 				$http({
 					method: 'POST',
 					url: Constants.url + 'api/User',
@@ -41,11 +27,50 @@ angular.module('jobcenterapp.services', [])
 						cvr: model.cvr || '',
 						workType: 999999,
 						numberOfEmployees: parseInt(model.numberOfEmployees) || ''
-				    //GUID: Userid?
 					}
 				}).success(function (data, status, headers, config) {
 					$localForage.setItem('user', model);
 					$localForage.setItem('guid', data);
+					$ionicHistory.nextViewOptions({
+						disableBack: true
+					});
+					d.resolve(data);
+				}).error(function (data, status, headers, config) {
+					$log.debug(data);
+					d.reject(data)
+				});
+				return d.promise
+			};
+
+
+			/**
+			 * Update user
+			 * @param model, guid
+			 * @returns {*}
+			 */
+
+			dataService.updateUser = function(model, guid){
+				var d = $q.defer();
+
+				$http({
+					method: 'POST',
+					url: Constants.url + 'api/UserUpdate',
+					timeout : 5000,
+					data: {
+						firstName: model.firstName || '',
+						lastName: model.lastName || '',
+						email: model.email || '',
+						phone: model.phone || '',
+						companyName : model.companyName || '',
+						companyPostalCode: model.companyAreacode || '',
+						pno: model.Pnr || '',
+						cvr: model.cvr || '',
+						workType: 999999,
+						numberOfEmployees: parseInt(model.numberOfEmployees) || '',
+						GUID : guid
+					}
+				}).success(function (data, status, headers, config) {
+					$localForage.setItem('user', model);
 					$ionicHistory.nextViewOptions({
 						disableBack: true
 					});
@@ -75,7 +100,6 @@ angular.module('jobcenterapp.services', [])
 					d.reject(data)
 				});
 				return d.promise
-
 			};
 
 
@@ -103,23 +127,24 @@ angular.module('jobcenterapp.services', [])
 			 * Handle messages
 			 * @returns {*}
 			 */
-			dataService.handleMessage= function(){
+			dataService.handleMessage= function(answer, id, guid){
 				var d = $q.defer();
-				$http({
-					method: 'GET',
 
+				$http({
+					method: 'POST',
 					cache: false,
-					params :  {
-						Message_FK : Message_FK,
-						Company_FK : Company_FK,
-						WantedByCompany : WantedByCompany,
-						ContactMethod_FK : ContactMethod_FK,
+					data :  {
+						Message_FK : String(id),
+						Company_FK : guid,
+						WantedByCompany : answer,
+						ContactMethod_FK : '1'
 					},
-					url: Constants.url + 'api/News/'
+					url: Constants.url + 'api/Message/'
 				}).success(function (data, status, headers, config) {
+					$log.debug('sucess in handleMessage', data);
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {
-					$log.debug('error in getting app structure', data);
+					$log.debug('error handling message', data);
 					d.reject(data)
 				});
 				return d.promise

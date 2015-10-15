@@ -28,8 +28,6 @@ angular.module('jobcenterapp.controllers')
 				})
 			};
 
-
-
 			/**
 			 * Check if it is the first time the app runs
 			 */
@@ -51,6 +49,7 @@ angular.module('jobcenterapp.controllers')
 					}
 				});
 			}();
+
 		}]);
 
 
