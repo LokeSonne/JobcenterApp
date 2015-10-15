@@ -31,39 +31,26 @@ angular.module('jobcenterapp.services', [])
 					url: Constants.url + 'api/User',
 					timeout : 5000,
 					data: {
-	/*					firstName: model.firstName || '',
+						firstName: model.firstName || '',
 						lastName: model.lastName || '',
 						email: model.email || '',
 						phone: model.phone || '',
 						companyName : model.companyName || '',
 						companyPostalCode: model.companyAreacode || '',
-						pno: model.Pnr || null,
+						pno: model.Pnr || '',
 						cvr: model.cvr || '',
-						workType: 1,
+						workType: 999999,
 						numberOfEmployees: parseInt(model.numberOfEmployees) || ''
-				    //GUID: Userid?	*/
-				    //
-				    //
-				    firstName: 'Matthias',
-						lastName: 'Fuglsang',
-						email: 'a@a.dk',
-						phone: '12345678',
-						companyName : 'Test',
-						companyPostalCode: '1234',
-						pno: '12345678',
-						cvr: '12345678',
-						workType: 1,
-						numberOfEmployees: 1,
-				    GUID: 'APFLGUkeFAUxsCc2t2g5aEJTPdavZNq8'
+				    //GUID: Userid?
 					}
 				}).success(function (data, status, headers, config) {
 					$localForage.setItem('user', model);
+					$localForage.setItem('guid', data);
 					$ionicHistory.nextViewOptions({
 						disableBack: true
 					});
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {
-					$log.debug('error in cancelAccount request');
 					$log.debug(data);
 					d.reject(data)
 				});
