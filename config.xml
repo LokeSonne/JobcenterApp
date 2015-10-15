@@ -2,10 +2,10 @@
 <widget id="com.sonnenielsen.jobcenterapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>jobcenterapp</name>
   <description>
-        An Ionic Framework and Cordova project.
+        Jobcenter app for Kalundborg kommune
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="tjuna@gmail.com" href="http://tunapower.dk/">
+      Tuna
     </author>
   <content src="index.html"/>
   <access origin="*"/>

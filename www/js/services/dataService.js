@@ -1,6 +1,6 @@
 
 angular.module('jobcenterapp.services', [])
-		.service('dataService', ['$http', '$q', 'Constants','$log', '$localForage', '$cordovaDevice','$ionicHistory', function dataService($http, $q, Constants, $log, $localForage, $cordovaDevice, $ionicHistory) {
+		.service('dataService', ['$http', '$q', 'Constants','$log', '$localForage', '$cordovaDevice','$ionicHistory', 'messageService', '$raven', function dataService($http, $q, Constants, $log, $localForage, $cordovaDevice, $ionicHistory, messageService,$raven) {
 			// AngularJS will instantiate a singleton by calling "new" on this function
 			var dataService = this;
 
@@ -38,6 +38,8 @@ angular.module('jobcenterapp.services', [])
 				}).error(function (data, status, headers, config) {
 					$log.debug(data);
 					d.reject(data)
+					$raven.captureMessage('Error in registerUser : ', data, model);
+					messageService.showAlert();
 				});
 				return d.promise
 			};
@@ -77,7 +79,10 @@ angular.module('jobcenterapp.services', [])
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {
 					$log.debug(data);
-					d.reject(data)
+					d.reject(data);
+					$raven.captureMessage('Error in updateUser : ', data, model);
+
+					messageService.showAlert();
 				});
 				return d.promise
 			};
@@ -97,7 +102,9 @@ angular.module('jobcenterapp.services', [])
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {
 					$log.debug('error in getting app structure', data);
-					d.reject(data)
+					d.reject(data);
+					$raven.captureMessage('Error in getStructure : ', data);
+					messageService.showAlert();
 				});
 				return d.promise
 			};
@@ -118,7 +125,9 @@ angular.module('jobcenterapp.services', [])
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {
 					$log.debug('error in getting app structure', data);
-					d.reject(data)
+					d.reject(data);
+					$raven.captureMessage('Error in getNews : ', data);
+					messageService.showAlert();
 				});
 				return d.promise
 			};
@@ -145,6 +154,8 @@ angular.module('jobcenterapp.services', [])
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {
 					$log.debug('error handling message', data);
+					$raven.captureMessage('Error in handleMessage : ', data);
+					messageService.showAlert();
 					d.reject(data)
 				});
 				return d.promise
