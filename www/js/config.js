@@ -41,9 +41,9 @@ var jobcenterapp = angular.module('jobcenterapp', [
     });
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
+      $log.debug('disabling scroll and keyboard accessory bar');
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       StatusBar.styleDefault();

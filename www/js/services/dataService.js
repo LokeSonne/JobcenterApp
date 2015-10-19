@@ -37,7 +37,7 @@ angular.module('jobcenterapp.services', [])
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {
 					$log.debug(data);
-					d.reject(data)
+					d.reject(data);
 					$raven.captureMessage('Error in registerUser : ', data, model);
 					messageService.showAlert();
 				});
