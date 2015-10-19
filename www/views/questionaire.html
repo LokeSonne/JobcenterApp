@@ -1,13 +1,13 @@
 <ion-view class="slide-left-right" title="{{Questionaire.page.name}}">
-  <ion-content padding="false" scroll="false" class="has-header">
+  <ion-content padding="false" cache-view="false" scroll="false" class="has-header">
 
     <h4 class="text-center">Hvad kan vi hjælpe med?</h4>
     <ul class="list">
-      <ion-radio-fix ng-repeat="choice in Questionaire.page.messages" ng-click="Questionaire.selected = choice.id" ng-value="{{choice.id}}">{{choice.name}}</ion-radio-fix>
-    </ul>
+      <ion-radio-fix required ng-repeat="choice in Questionaire.page.messages" ng-click="Questionaire.selected = choice.id" ng-value="{{choice.id}}">{{choice.name}}</ion-radio-fix>
+    </ul>e
 
     <div class="padding button-container">
-      <button ng-click="Questionaire.goAndRegister(Questionaire.selected)" class="button button-positive button-block">Send</button>
+      <button ng-disabled="!Questionaire.selected" ng-click="Questionaire.goAndRegister(Questionaire.selected); Questionaire.selected = undefined" class="button button-positive button-block">Send</button>
     </div>
 
   </ion-content>

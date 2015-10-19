@@ -11,7 +11,7 @@ var jobcenterapp = angular.module('jobcenterapp', [
   'ngIOS9UIWebViewPatch'
   ])
 
-.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', 'Constants', '$ionicHistory', function($ionicPlatform, $localForage, $rootScope, $state, $timeout, Constants, $ionicHistory) {
+.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', 'Constants', '$ionicHistory', '$log', function($ionicPlatform, $localForage, $rootScope, $state, $timeout, Constants, $ionicHistory, $log) {
 
   $rootScope.showLoader = true;
   $rootScope.fromState;
@@ -23,22 +23,6 @@ var jobcenterapp = angular.module('jobcenterapp', [
     if(Constants.development === true){
       $localForage.clear();
     }
-    /**
-     * Check if user is logged in. Redirect to main if true
-     */
-    $localForage.getItem('guid').then(function(data) {
-      if(data === null){
-        $state.go('intro')
-      }
-      else{
-        $state.go('main')
-      }
-      $ionicHistory.nextViewOptions({
-        historyRoot: true,
-        disableBack: true
-      });
-      $rootScope.showLoader = false;
-    });
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       $log.debug('disabling scroll and keyboard accessory bar');
@@ -48,6 +32,27 @@ var jobcenterapp = angular.module('jobcenterapp', [
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    /**
+     * Check if user is logged in. Redirect to main if true
+     */
+    checkLocalStorage = function(){
+      if(window.localStorage.getItem('jobcenter/guid')) {
+        $log.debug('jobcenter/guid is present. Going to main')
+        $state.go('main')
+      }
+      else{
+        $log.debug('jobcenter/guid is not present. Going to intro')
+        $state.go('intro')
+      }
+
+      $ionicHistory.nextViewOptions({
+        historyRoot: true,
+        disableBack: true
+      });
+      $rootScope.showLoader = false;
+    }();
+
   });
 
   $rootScope.$on('$stateChangeStart',function(){

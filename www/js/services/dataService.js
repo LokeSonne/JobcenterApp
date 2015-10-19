@@ -38,7 +38,8 @@ angular.module('jobcenterapp.services', [])
 				}).error(function (data, status, headers, config) {
 					$log.debug(data);
 					d.reject(data);
-					$raven.captureMessage('Error in registerUser : ', data, model);
+					$raven.captureMessage('Error in registerUser : ' + data  +' and posted data/model is: ' + model);
+
 					messageService.showAlert();
 				});
 				return d.promise
@@ -80,7 +81,7 @@ angular.module('jobcenterapp.services', [])
 				}).error(function (data, status, headers, config) {
 					$log.debug(data);
 					d.reject(data);
-					$raven.captureMessage('Error in updateUser : ', data, model);
+					$raven.captureMessage('Error in updateUser : ' + data  +' and posted data/model is: ' + model);
 
 					messageService.showAlert();
 				});
@@ -101,9 +102,9 @@ angular.module('jobcenterapp.services', [])
 				}).success(function (data, status, headers, config) {
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {
-					$log.debug('error in getting app structure', data);
+					$log.debug('error in getting app structure' + data);
+					$raven.captureMessage('Error in getStructure : ' + data);
 					d.reject(data);
-					$raven.captureMessage('Error in getStructure : ', data);
 					messageService.showAlert();
 				});
 				return d.promise
@@ -126,7 +127,7 @@ angular.module('jobcenterapp.services', [])
 				}).error(function (data, status, headers, config) {
 					$log.debug('error in getting app structure', data);
 					d.reject(data);
-					$raven.captureMessage('Error in getNews : ', data);
+					$raven.captureMessage('Error in getNews : ' + data);
 					messageService.showAlert();
 				});
 				return d.promise
@@ -153,8 +154,8 @@ angular.module('jobcenterapp.services', [])
 					$log.debug('sucess in handleMessage', data);
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {
+					$raven.captureMessage('Error in handleMessage : ' + data);
 					$log.debug('error handling message', data);
-					$raven.captureMessage('Error in handleMessage : ', data);
 					messageService.showAlert();
 					d.reject(data)
 				});
