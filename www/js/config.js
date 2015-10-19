@@ -26,12 +26,12 @@ var jobcenterapp = angular.module('jobcenterapp', [
     /**
      * Check if user is logged in. Redirect to main if true
      */
-    $localForage.getItem('user').then(function(data) {
-      if(data !== null && data.firstName){
-        $state.go('main')
+    $localForage.getItem('guid').then(function(data) {
+      if(data === null){
+        $state.go('intro')
       }
       else{
-        $state.go('intro')
+        $state.go('main')
       }
       $ionicHistory.nextViewOptions({
         historyRoot: true,
@@ -65,11 +65,21 @@ var jobcenterapp = angular.module('jobcenterapp', [
   });
 }])
 
-.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', '$logProvider', 'Constants', '$httpProvider', '$ionicConfigProvider', '$ravenProvider', 'CacheFactoryProvider' ,function($stateProvider, $urlRouterProvider, $compileProvider, $logProvider, Constants, $httpProvider, $ionicConfigProvider, $ravenProvider, CacheFactoryProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', '$logProvider', 'Constants', '$httpProvider', '$ionicConfigProvider', '$ravenProvider', 'CacheFactoryProvider', '$localForageProvider' ,function($stateProvider, $urlRouterProvider, $compileProvider, $logProvider, Constants, $httpProvider, $ionicConfigProvider, $ravenProvider, CacheFactoryProvider, $localForageProvider) {
   $compileProvider.debugInfoEnabled(Constants.development);
   $logProvider.debugEnabled(Constants.development);
   $ravenProvider.development(Constants.development);
   $ionicConfigProvider.backButton.text('');
+
+
+      $localForageProvider.config({
+        driver      : localforage.LOCALSTORAGE, // Force WebSQL; same as using setDriver()
+        name        : 'jobcenter',
+        version     : 1.0,
+        size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+        storeName   : 'keyvaluepairs', // Should be alphanumeric, with underscores.
+        description : 'some description'
+      });
 
   /**
    * Deaktiver javascript scrolling på android
