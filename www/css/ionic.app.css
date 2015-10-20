@@ -9379,17 +9379,3 @@ a.button {
     padding-right: 10px; }
   .button-container.padding {
     padding-right: 10px; }
-
-.rotate {
-  -webkit-animation-name: rotate;
-  -webkit-animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards; }
-
-@-webkit-keyframes rotate {
-  from {
-    -webkit-transform: rotate(0deg); }
-  to {
-    -webkit-transform: rotate(360deg); } }
