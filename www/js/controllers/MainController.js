@@ -1,16 +1,26 @@
 angular.module('jobcenterapp.controllers')
-		.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate', '$ionicHistory', '$state', '$stateParams', 'appStructure' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate, $ionicHistory, $state, $stateParams, appStructure) {
+		.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate', '$ionicHistory', '$state', '$stateParams', 'dataService' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate, $ionicHistory, $state, $stateParams, dataService) {
 			var Main = this;
 			Main.model = {};
 			Main.alert = '';
 			Main.navigation = [];
+			Main.navigationTitles = [];
 
-			$log.debug('app structure : ', appStructure);
+			Main.init = function(){
+				$log.debug('initializing main menu');
+				Main.navigation = [];
+				Main.navigationTitles = [];
+				dataService.getStructure().then(function(appStructure){
+					if(angular.isArray(appStructure) && appStructure.length > 0){
+						Main.navigation = appStructure;
+						angular.forEach(appStructure, function(value, key) {
+							Main.navigationTitles[key] = value.name
+						});
+					}
+				});
+			};
+			Main.init();
 
-			//build link structucture
-			angular.forEach(appStructure, function(value, key) {
-				Main.navigation[key] = value.name
-			});
 
 			/**
 			 *	Hide back button
@@ -24,7 +34,7 @@ angular.module('jobcenterapp.controllers')
 
 			Main.openQuestionaire = function(index){
 				$state.go('questionaire', {
-					data : appStructure[index]
+					data : Main.navigation[index]
 				})
 			};
 

@@ -78,7 +78,7 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
 
       $localForageProvider.config({
-        driver      : localforage.LOCALSTORAGE, // Force WebSQL; same as using setDriver()
+        driver      : localforage.LOCALSTORAGE, // Force LOCALSTORAGE; same as using setDriver()
         name        : 'jobcenter',
         version     : 1.0,
         size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
@@ -124,11 +124,6 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
     .state('main', {
       url: '/main',
-      resolve: {
-        appStructure: function (dataService) {
-          return dataService.getStructure();
-        }
-      },
       controller: 'MainController as Main',
       templateUrl: 'views/main.html'
     })
