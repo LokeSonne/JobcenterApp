@@ -132,10 +132,6 @@ var jobcenterapp = angular.module('jobcenterapp', [
     /**
      * Check if user is logged in. Redirect to main if true
      */
-    //$ionicHistory.nextViewOptions({
-    //  historyRoot: true,
-    //  disableBack: true
-    //});
     alert('guid er : ' + window.localStorage.getItem('jobcenter/guid'));
     alert('user er : ' + window.localStorage.getItem('jobcenter/user'));
     if(window.localStorage.getItem('jobcenter/guid') !== null && window.localStorage.getItem('jobcenter/user') !== null) {
