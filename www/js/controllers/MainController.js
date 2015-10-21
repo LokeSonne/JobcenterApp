@@ -1,16 +1,18 @@
 angular.module('jobcenterapp.controllers')
-		.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate', '$ionicHistory', '$state', '$stateParams', 'dataService' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate, $ionicHistory, $state, $stateParams, dataService) {
+		.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate', '$ionicHistory', '$state', '$stateParams', 'dataService', '$rootScope' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate, $ionicHistory, $state, $stateParams, dataService, $rootScope) {
 			var Main = this;
 			Main.model = {};
 			Main.alert = '';
-			Main.navigation = [];
-			Main.navigationTitles = [];
 
 			Main.init = function(){
+				Main.state = 'Loading';
+				$rootScope.showLoader = true;
 				$log.debug('initializing main menu');
 				Main.navigation = [];
 				Main.navigationTitles = [];
 				dataService.getStructure().then(function(appStructure){
+					$rootScope.showLoader = false;
+					Main.state = 'FINISHED';
 					if(angular.isArray(appStructure) && appStructure.length > 0){
 						Main.navigation = appStructure;
 						angular.forEach(appStructure, function(value, key) {
@@ -19,8 +21,8 @@ angular.module('jobcenterapp.controllers')
 					}
 				});
 			};
-			Main.init();
 
+			Main.init();
 
 			/**
 			 *	Hide back button
@@ -59,7 +61,6 @@ angular.module('jobcenterapp.controllers')
 					}
 				});
 			}();
-
 		}]);
 
 

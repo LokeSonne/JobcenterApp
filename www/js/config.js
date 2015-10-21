@@ -11,65 +11,6 @@ var jobcenterapp = angular.module('jobcenterapp', [
   'ngIOS9UIWebViewPatch'
   ])
 
-.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', 'Constants', '$ionicHistory', '$log', function($ionicPlatform, $localForage, $rootScope, $state, $timeout, Constants, $ionicHistory, $log) {
-
-  $rootScope.showLoader = true;
-  $rootScope.fromState;
-
-  $ionicPlatform.ready(function() {
-    /**
-     * Clear localstorage on run. Usefull for debugging
-     */
-    if(Constants.development === true){
-      $localForage.clear();
-    }
-
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      $log.debug('disabling scroll and keyboard accessory bar');
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
-    }
-    if (window.StatusBar) {
-      StatusBar.styleDefault();
-    }
-
-    /**
-     * Check if user is logged in. Redirect to main if true
-     */
-    checkLocalStorage = function(){
-      if(window.localStorage.getItem('jobcenter/guid')) {
-        $log.debug('jobcenter/guid is present. Going to main')
-        $state.go('main')
-      }
-      else{
-        $log.debug('jobcenter/guid is not present. Going to intro')
-        $state.go('intro')
-      }
-
-      $ionicHistory.nextViewOptions({
-        historyRoot: true,
-        disableBack: true
-      });
-      $rootScope.showLoader = false;
-    }();
-
-  });
-
-  $rootScope.$on('$stateChangeStart',function(){
-    $rootScope.showLoader = true;
-  });
-
-  $rootScope.$on('$stateChangeSuccess',function(ev, to, toParams, from, fromParams){
-    $rootScope.showLoader = false;
-    if(from.name === 'minside'){
-      $rootScope.loginTitle  = 'Min profil';
-    }
-    else{
-      $rootScope.loginTitle  = 'Login';
-    }
-  });
-}])
-
 .config(['$stateProvider', '$urlRouterProvider', '$compileProvider', '$logProvider', 'Constants', '$httpProvider', '$ionicConfigProvider', '$ravenProvider', 'CacheFactoryProvider', '$localForageProvider' ,function($stateProvider, $urlRouterProvider, $compileProvider, $logProvider, Constants, $httpProvider, $ionicConfigProvider, $ravenProvider, CacheFactoryProvider, $localForageProvider) {
   $compileProvider.debugInfoEnabled(Constants.development);
   $logProvider.debugEnabled(Constants.development);
@@ -77,14 +18,14 @@ var jobcenterapp = angular.module('jobcenterapp', [
   $ionicConfigProvider.backButton.text('');
 
 
-      $localForageProvider.config({
-        driver      : localforage.LOCALSTORAGE, // Force LOCALSTORAGE; same as using setDriver()
-        name        : 'jobcenter',
-        version     : 1.0,
-        size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
-        storeName   : 'keyvaluepairs', // Should be alphanumeric, with underscores.
-        description : 'some description'
-      });
+  $localForageProvider.config({
+    driver      : localforage.LOCALSTORAGE, // Force LOCALSTORAGE; same as using setDriver()
+    name        : 'jobcenter',
+    version     : 1.0,
+    size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+    storeName   : 'keyvaluepairs', // Should be alphanumeric, with underscores.
+    description : 'some description'
+  });
 
   /**
    * Deaktiver javascript scrolling på android
@@ -100,9 +41,7 @@ var jobcenterapp = angular.module('jobcenterapp', [
   angular.extend(CacheFactoryProvider.defaults, { maxAge: 15 * 60 * 1000 });
 
   $httpProvider.useApplyAsync(true);
-  $ionicConfigProvider.views.maxCache(10);
   $ionicConfigProvider.views.swipeBackEnabled(false);
-
 
   $stateProvider
     .state('intro', {
@@ -166,5 +105,68 @@ var jobcenterapp = angular.module('jobcenterapp', [
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');
 
-}]);
+}])
+
+.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', 'Constants', '$ionicHistory', '$log', function($ionicPlatform, $localForage, $rootScope, $state, $timeout, Constants, $ionicHistory, $log) {
+
+  $rootScope.showLoader = true;
+  $rootScope.fromState;
+
+  $ionicPlatform.ready(function() {
+    /**
+     * Clear localstorage on run. Usefull for debugging
+     */
+    if(Constants.development === true){
+      $localForage.clear();
+    }
+
+    if (window.cordova && window.cordova.plugins.Keyboard) {
+      $log.debug('disabling scroll and keyboard accessory bar');
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
+    }
+    if (window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+
+    /**
+     * Check if user is logged in. Redirect to main if true
+     */
+    //$ionicHistory.nextViewOptions({
+    //  historyRoot: true,
+    //  disableBack: true
+    //});
+    alert('guid er : ' + window.localStorage.getItem('jobcenter/guid'));
+    alert('user er : ' + window.localStorage.getItem('jobcenter/user'));
+    if(window.localStorage.getItem('jobcenter/guid') !== null && window.localStorage.getItem('jobcenter/user') !== null) {
+      alert('går til main');
+      $log.debug('jobcenter/guid is present. Going to main');
+      $state.go('main')
+    }
+    else if(window.localStorage.getItem('jobcenter/guid') === null && window.localStorage.getItem('jobcenter/user') === null){
+      $log.debug('jobcenter/guid is not present. Going to intro');
+      alert('går til intro');
+      $state.go('intro')
+    }
+    else{
+      alert('Noget gik galt');
+    }
+
+    $rootScope.showLoader = false;
+  });
+
+  $rootScope.$on('$stateChangeStart',function(){
+    $rootScope.showLoader = true;
+  });
+
+  $rootScope.$on('$stateChangeSuccess',function(ev, to, toParams, from, fromParams){
+    $rootScope.showLoader = false;
+    if(from.name === 'minside'){
+      $rootScope.loginTitle  = 'Min profil';
+    }
+    else{
+      $rootScope.loginTitle  = 'Login';
+    }
+  });
+}])
 

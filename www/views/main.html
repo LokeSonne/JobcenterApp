@@ -5,8 +5,7 @@
       <button ng-repeat="title in Main.navigationTitles track by $index" ng-class="{'button-energized': title === 'Rekruttering' || title === 'Fleksjob'}" ng-click="Main.openQuestionaire($index)" class="button button-positive button-block ">{{::title}}</button>
     </div>
 
-
-    <div ng-if="Main.navigation.length === 0" class="row row-center content-container" ng-cloak>
+    <div ng-if="Main.navigation.length === 0 && Main.status === 'FINISHED'" class="row row-center content-container" ng-cloak>
       <h3 class="text-center font-normal">
         Der skete en fejl ved hentning af menuen <br/>
         prøv igen <br/>

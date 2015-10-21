@@ -1,7 +1,4 @@
 /**
- * Created by Mikkel Markvardsen on 21/09/15.
- */
-/**
  * ==================  angular-ios9-uiwebview.patch.js v1.1.1 ==================
  *
  * This patch works around iOS9 UIWebView regression that causes infinite digest
