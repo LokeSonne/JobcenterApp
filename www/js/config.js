@@ -118,6 +118,8 @@ var jobcenterapp = angular.module('jobcenterapp', [
      */
     if(Constants.development === true){
       $localForage.clear();
+      alert('guid er : ' + window.localStorage.getItem('jobcenter/guid'));
+      alert('user er : ' + window.localStorage.getItem('jobcenter/user'));
     }
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -132,20 +134,16 @@ var jobcenterapp = angular.module('jobcenterapp', [
     /**
      * Check if user is logged in. Redirect to main if true
      */
-    alert('guid er : ' + window.localStorage.getItem('jobcenter/guid'));
-    alert('user er : ' + window.localStorage.getItem('jobcenter/user'));
     if(window.localStorage.getItem('jobcenter/guid') !== null && window.localStorage.getItem('jobcenter/user') !== null) {
-      alert('går til main');
       $log.debug('jobcenter/guid is present. Going to main');
       $state.go('main')
     }
     else if(window.localStorage.getItem('jobcenter/guid') === null && window.localStorage.getItem('jobcenter/user') === null){
       $log.debug('jobcenter/guid is not present. Going to intro');
-      alert('går til intro');
       $state.go('intro')
     }
     else{
-      alert('Noget gik galt');
+     $log.debug('something went wrong. Guid is' + window.localStorage.getItem('jobcenter/guid') + ' and user is : ' + window.localStorage.getItem('jobcenter/user'));
     }
 
     $rootScope.showLoader = false;
