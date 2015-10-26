@@ -1,5 +1,5 @@
 angular.module('jobcenterapp.controllers', [])
-		.controller('LoginController', ['$log', '$state', '$localForage', '$ionicHistory', 'dataService', '$rootScope' ,function LoginController($log, $state, $localForage, $ionicHistory, dataService, $rootScope) {
+		.controller('LoginController', ['$log', '$state', '$localForage', '$ionicHistory', 'dataService', '$ionicLoading' ,function LoginController($log, $state, $localForage, $ionicHistory, dataService, $ionicLoading) {
 			var Login = this;
 			Login.model = {};
 
@@ -13,17 +13,18 @@ angular.module('jobcenterapp.controllers', [])
 			});
 
 			Login.register = function(model){
-				$rootScope.showLoader = true;
+				$ionicLoading.show();
 				if(Login.guid !== null){
 					dataService.updateUser(model, Login.guid)
 						.then(function(){
 							$ionicHistory.nextViewOptions({
 								disableBack: true
 							});
+							$ionicLoading.hide();
 							$state.go('main');
 						},function(reason) {
-							$rootScope.showLoader = false;
-					});
+								$ionicLoading.hide();
+							});
 				}
 				else{
 					dataService.registerUser(model)
@@ -31,10 +32,11 @@ angular.module('jobcenterapp.controllers', [])
 							$ionicHistory.nextViewOptions({
 								disableBack: true
 							});
+							$ionicLoading.hide();
 							$state.go('main');
 						},function(reason) {
-							$rootScope.showLoader = false;
-						});
+								$ionicLoading.hide();
+							});
 				}
 			}
 		}]);

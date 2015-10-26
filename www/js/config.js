@@ -107,19 +107,19 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
 }])
 
-.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', 'Constants', '$ionicHistory', '$log', function($ionicPlatform, $localForage, $rootScope, $state, $timeout, Constants, $ionicHistory, $log) {
+.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', 'Constants', '$ionicHistory', '$log', '$ionicLoading', function($ionicPlatform, $localForage, $rootScope, $state, $timeout, Constants, $ionicHistory, $log, $ionicLoading) {
 
-  $rootScope.showLoader = true;
   $rootScope.fromState;
 
   $ionicPlatform.ready(function() {
+    $ionicLoading.show();
     /**
      * Clear localstorage on run. Usefull for debugging
      */
     if(Constants.development === true){
-      $localForage.clear();
-      alert('guid er : ' + window.localStorage.getItem('jobcenter/guid'));
-      alert('user er : ' + window.localStorage.getItem('jobcenter/user'));
+      //$localForage.clear();
+      //alert('guid er : ' + window.localStorage.getItem('jobcenter/guid'));
+      //alert('user er : ' + window.localStorage.getItem('jobcenter/user'));
     }
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -136,31 +136,38 @@ var jobcenterapp = angular.module('jobcenterapp', [
      */
     if(window.localStorage.getItem('jobcenter/guid') !== null && window.localStorage.getItem('jobcenter/user') !== null) {
       $log.debug('jobcenter/guid is present. Going to main');
-      $state.go('main')
+      $state.transitionTo('main')
     }
     else if(window.localStorage.getItem('jobcenter/guid') === null && window.localStorage.getItem('jobcenter/user') === null){
       $log.debug('jobcenter/guid is not present. Going to intro');
-      $state.go('intro')
+      $state.transitionTo('intro')
     }
     else{
      $log.debug('something went wrong. Guid is' + window.localStorage.getItem('jobcenter/guid') + ' and user is : ' + window.localStorage.getItem('jobcenter/user'));
     }
-
-    $rootScope.showLoader = false;
   });
 
   $rootScope.$on('$stateChangeStart',function(){
-    $rootScope.showLoader = true;
+    $ionicLoading.show();
   });
 
   $rootScope.$on('$stateChangeSuccess',function(ev, to, toParams, from, fromParams){
-    $rootScope.showLoader = false;
+    $ionicLoading.hide();
     if(from.name === 'minside'){
       $rootScope.loginTitle  = 'Min profil';
     }
     else{
       $rootScope.loginTitle  = 'Login';
     }
+
+    $log.debug('Coming from ' + from.name);
+    if(from.name==='intro'){
+      $rootScope.showBackButton = false;
+    }
+
+    else{
+      $rootScope.showBackButton = true;
+    }
   });
-}])
+}]);
 

@@ -38,7 +38,7 @@ angular.module('jobcenterapp.services', [])
 				}).error(function (data, status, headers, config) {
 					$log.debug(data);
 					d.reject(data);
-					$raven.captureMessage('Error in registerUser : ' + data  +' and posted data/model is: ' + model);
+					$raven.captureMessage('Error in registerUser : ' + JSON.stringify(data)  +' and posted data/model is: ' + JSON.stringify(model));
 
 					messageService.showAlert();
 				});
@@ -81,7 +81,7 @@ angular.module('jobcenterapp.services', [])
 				}).error(function (data, status, headers, config) {
 					$log.debug(data);
 					d.reject(data);
-					$raven.captureMessage('Error in updateUser : ' + data  +' and posted data/model is: ' + model);
+					$raven.captureMessage('Error in updateUser : ' + JSON.stringify(data)  +' and posted data/model is: ' + JSON.stringify(model));
 
 					messageService.showAlert();
 				});
@@ -96,14 +96,14 @@ angular.module('jobcenterapp.services', [])
 				var d = $q.defer();
 				$http({
 					method: 'GET',
-					timeout : 6000,
+					timeout : 10000,
 					cache: false,
 					url: Constants.url + 'api/Message'
 				}).success(function (data, status, headers, config) {
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {
-					$log.debug('error in getting app structure' + data);
-					$raven.captureMessage('Error in getStructure : ' + data);
+					$log.debug('error in getting app structure' + JSON.stringify(data));
+					$raven.captureMessage('Error in getStructure : ' + JSON.stringify(data));
 					d.reject(data);
 					messageService.showAlert();
 				});
@@ -125,9 +125,9 @@ angular.module('jobcenterapp.services', [])
 				}).success(function (data, status, headers, config) {
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {
-					$log.debug('error in getting app structure', data);
+					$log.debug('error in getting app structure', JSON.stringify(data));
 					d.reject(data);
-					$raven.captureMessage('Error in getNews : ' + data);
+					$raven.captureMessage('Error in getNews : ' + JSON.stringify(data));
 					messageService.showAlert();
 				});
 				return d.promise
@@ -154,8 +154,8 @@ angular.module('jobcenterapp.services', [])
 					$log.debug('sucess in handleMessage', data);
 					d.resolve(data);
 				}).error(function (data, status, headers, config) {
-					$raven.captureMessage('Error in handleMessage : ' + data);
-					$log.debug('error handling message', data);
+					$raven.captureMessage('Error in handleMessage : ' + JSON.stringify(data));
+					$log.debug('error handling message', JSON.stringify(data));
 					messageService.showAlert();
 					d.reject(data)
 				});
