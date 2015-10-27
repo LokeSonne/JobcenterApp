@@ -7,6 +7,7 @@ angular.module('jobcenterapp.controllers')
 		Main.init = function(){
 			Main.status = 'Loading';
 			$ionicLoading.show();
+			$ionicHistory.clearHistory();
 			$log.debug('initializing main menu');
 			Main.navigation = [];
 			Main.navigationTitles = [];

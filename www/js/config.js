@@ -145,6 +145,8 @@ var jobcenterapp = angular.module('jobcenterapp', [
     else{
      $log.debug('something went wrong. Guid is' + window.localStorage.getItem('jobcenter/guid') + ' and user is : ' + window.localStorage.getItem('jobcenter/user'));
     }
+    $ionicLoading.hide();
+
   });
 
   $rootScope.$on('$stateChangeStart',function(){

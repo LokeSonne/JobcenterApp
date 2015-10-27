@@ -23,8 +23,8 @@ angular.module('jobcenterapp.controllers', [])
 							$ionicLoading.hide();
 							$state.go('main');
 						},function(reason) {
-								$ionicLoading.hide();
-							});
+							$ionicLoading.hide();
+						});
 				}
 				else{
 					dataService.registerUser(model)
@@ -35,8 +35,8 @@ angular.module('jobcenterapp.controllers', [])
 							$ionicLoading.hide();
 							$state.go('main');
 						},function(reason) {
-								$ionicLoading.hide();
-							});
+							$ionicLoading.hide();
+						});
 				}
 			}
 		}]);

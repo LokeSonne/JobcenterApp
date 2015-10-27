@@ -81,7 +81,7 @@ angular.module('jobcenterapp.services', [])
 				}).error(function (data, status, headers, config) {
 					$log.debug(data);
 					d.reject(data);
-					$raven.captureMessage('Error in updateUser : ' + JSON.stringify(data)  +' and posted data/model is: ' + JSON.stringify(model));
+					$raven.captureMessage('Error in updateUser : ' + JSON.stringify(data)  +', posted data/model is: ' + JSON.stringify(model) + ' and guid is : ' + JSON.stringify(guid));
 
 					messageService.showAlert();
 				});
