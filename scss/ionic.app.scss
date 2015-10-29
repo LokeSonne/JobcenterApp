@@ -25,7 +25,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 @import "custom/footer";
 @import "custom/item";
-@import "custom/spinner";
 @import "custom/bottom-bar-override";
 @import "custom/radiobutton-fix";
 @import "custom/radio-icon";
@@ -57,4 +56,18 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     padding-right: 10px;
   }
   bottom: 0;
+}
+
+  .rotate{
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+
+@-webkit-keyframes rotate {
+  from {-webkit-transform: rotate(0deg);}
+  to {-webkit-transform: rotate(360deg);}
 }

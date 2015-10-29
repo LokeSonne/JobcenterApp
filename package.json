@@ -1,5 +1,5 @@
 {
-  "name": "jobcenterapp",
+  "name": "jobcenter",
   "version": "1.0.0",
   "description": "jobcenterapp: An Ionic project",
   "dependencies": {
@@ -28,10 +28,8 @@
   "cordovaPlugins": [
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
-    "com.ionic.keyboard",
-    "org.apache.cordova.device",
-    "cordova-plugin-device",
-    "org.apache.cordova.splashscreen"
+    "org.apache.cordova.splashscreen",
+    "com.ionic.keyboard"
   ],
   "cordovaPlatforms": [
     "ios"

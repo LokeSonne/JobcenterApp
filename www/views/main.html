@@ -1,10 +1,20 @@
 <ion-view title="Jobcenter Kalundborg">
   <ion-content padding="true" scroll="false" class="has-header">
 
-   <button ng-repeat="link in Main.navigation track by $index" ng-class="{'button-energized': link == 'Rekruttering' || link == 'Fleksjob'}" ng-click="Main.openQuestionaire($index)" class="button button-positive button-block ">{{::link}}</button>
+    <div ng-if="Main.navigation.length > 0" ng-cloak>
+      <button ng-repeat="title in Main.navigationTitles track by $index" ng-class="{'button-energized': title === 'Rekruttering' || title === 'Fleksjob'}" ng-click="Main.openQuestionaire($index)" class="button button-positive button-block ">{{::title}}</button>
+    </div>
+
+    <div ng-if="Main.navigation.length === 0 && Main.status === 'FINISHED'" class="row row-center content-container" ng-cloak>
+      <h3 class="text-center font-normal">
+        Der skete en fejl ved hentning af menuen <br/>
+        prøv igen <br/>
+        <i style="font-size: 40px;" rotate-on-click ng-click="Main.init()" class="icon ion-ios-refresh"></i>
+      </h3>
+    </div>
 
     <div class="button-container">
-      <button  ui-sref="minside" class="button button-calm button-block">Min side</button>
+      <button ui-sref="minside" class="button button-calm button-block">Min side</button>
     </div>
 
   </ion-content>
