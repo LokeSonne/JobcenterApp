@@ -110,9 +110,9 @@ var jobcenterapp = angular.module('jobcenterapp', [
 .run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', 'Constants', '$ionicHistory', '$log', '$ionicLoading', function($ionicPlatform, $localForage, $rootScope, $state, $timeout, Constants, $ionicHistory, $log, $ionicLoading) {
 
   $rootScope.fromState;
+  $ionicLoading.show();
 
   $ionicPlatform.ready(function() {
-    $ionicLoading.show();
     /**
      * Clear localstorage on run. Usefull for debugging
      */
