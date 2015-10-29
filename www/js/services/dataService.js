@@ -45,7 +45,6 @@ angular.module('jobcenterapp.services', [])
 				return d.promise
 			};
 
-
 			/**
 			 * Update user
 			 * @param model, guid
@@ -147,7 +146,7 @@ angular.module('jobcenterapp.services', [])
 						Message_FK : String(id),
 						Company_FK : guid,
 						WantedByCompany : answer,
-						ContactMethod_FK : '1'
+						ContactMethod_FK : 1
 					},
 					url: Constants.url + 'api/Message/'
 				}).success(function (data, status, headers, config) {

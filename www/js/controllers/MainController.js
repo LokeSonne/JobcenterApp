@@ -1,5 +1,5 @@
 angular.module('jobcenterapp.controllers')
-	.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate', '$ionicHistory', '$state', '$stateParams', 'dataService', '$rootScope', '$ionicLoading' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate, $ionicHistory, $state, $stateParams, dataService, $rootScope, $ionicLoading) {
+	.controller('MainController', ['$log', '$localForage', '$ionicPopup', '$ionicNavBarDelegate', '$ionicHistory', '$state', '$stateParams', 'dataService', '$rootScope', '$ionicLoading', 'messageService' ,function MainController($log, $localForage, $ionicPopup, $ionicNavBarDelegate, $ionicHistory, $state, $stateParams, dataService, $rootScope, $ionicLoading, messageService) {
 		var Main = this;
 		Main.model = {};
 		Main.alert = '';
@@ -54,11 +54,9 @@ angular.module('jobcenterapp.controllers')
 			$localForage.getItem('firstRun').then(function(data) {
 				if(data === null) {
 					$localForage.setItem('firstRun', true);
-					Main.alert = $ionicPopup.alert({
-						title: 'Tak! <br> Du kan nu vælge et emne som du vil kontaktes om, eller se nyheder fra os på ”Min side”'
-					});
-					Main.alert.then(function (res) {
-						Main.alert = null;
+					messageService.showAlert({
+						title: 'Tak! <br> Du kan nu vælge et emne som du vil kontaktes om, eller se nyheder fra os på "Min side"',
+						saveButton: true
 					});
 				}
 				else{
