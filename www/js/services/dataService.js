@@ -96,7 +96,7 @@ angular.module('jobcenterapp.services', [])
 				$http({
 					method: 'GET',
 					timeout : 10000,
-					cache: false,
+					cache: true,
 					url: Constants.url + 'api/Message'
 				}).success(function (data, status, headers, config) {
 					d.resolve(data);

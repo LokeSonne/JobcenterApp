@@ -39,7 +39,7 @@ var jobcenterapp = angular.module('jobcenterapp', [
    * dvs for hver gang appen bruges tilgåes hvert endpoint kun en gang
    */
   angular.extend(CacheFactoryProvider.defaults, { maxAge: 15 * 60 * 1000 });
-
+  $ionicConfigProvider.views.maxCache(10);
   $httpProvider.useApplyAsync(true);
   $ionicConfigProvider.views.swipeBackEnabled(false);
 
@@ -69,6 +69,7 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
     .state('questionaire', {
       url: '/questionaire',
+      cache: false,
       params: {
         data: null
       },
@@ -107,24 +108,16 @@ var jobcenterapp = angular.module('jobcenterapp', [
 
 }])
 
-.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', 'Constants', '$ionicHistory', '$log', '$ionicLoading', function($ionicPlatform, $localForage, $rootScope, $state, $timeout, Constants, $ionicHistory, $log, $ionicLoading) {
+.run(['$ionicPlatform', '$localForage', '$rootScope','$state', '$timeout', 'Constants', '$ionicHistory', '$log', '$ionicLoading', '$cordovaKeyboard', function($ionicPlatform, $localForage, $rootScope, $state, $timeout, Constants, $ionicHistory, $log, $ionicLoading, $cordovaKeyboard) {
 
   $rootScope.fromState;
   $ionicLoading.show();
 
   $ionicPlatform.ready(function() {
-    /**
-     * Clear localstorage on run. Usefull for debugging
-     */
-    if(Constants.development === true){
-      //$localForage.clear();
-      //alert('guid er : ' + window.localStorage.getItem('jobcenter/guid'));
-      //alert('user er : ' + window.localStorage.getItem('jobcenter/user'));
-    }
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       $log.debug('disabling scroll and keyboard accessory bar');
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      $cordovaKeyboard.disableScroll(true);
       cordova.plugins.Keyboard.disableScroll(true);
     }
     if (window.StatusBar) {

@@ -18,7 +18,7 @@ angular.module('jobcenterapp.controllers')
 										$ionicHistory.nextViewOptions({
 											disableBack: true
 										});
-										$state.go('tak')
+										$state.go('tak');
 									})
 						});
 			};
