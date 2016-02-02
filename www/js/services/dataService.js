@@ -15,7 +15,7 @@ angular.module('jobcenterapp.services', [])
 				$http({
 					method: 'POST',
 					url: Constants.url + 'api/User',
-					timeout : 5000,
+					timeout : 10000,
 					data: {
 						firstName: model.firstName || '',
 						lastName: model.lastName || '',
@@ -57,7 +57,7 @@ angular.module('jobcenterapp.services', [])
 				$http({
 					method: 'POST',
 					url: Constants.url + 'api/UserUpdate',
-					timeout : 5000,
+					timeout : 10000,
 					data: {
 						firstName: model.firstName || '',
 						lastName: model.lastName || '',
@@ -109,7 +109,6 @@ angular.module('jobcenterapp.services', [])
 				return d.promise
 			};
 
-
 			/**
 			 * Get structure of app
 			 * @returns {*}
@@ -118,7 +117,7 @@ angular.module('jobcenterapp.services', [])
 				var d = $q.defer();
 				$http({
 					method: 'GET',
-					timeout : 5000,
+					timeout : 10000,
 					cache: false,
 					url: Constants.url + 'api/News/'
 				}).success(function (data, status, headers, config) {
