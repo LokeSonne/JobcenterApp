@@ -15,7 +15,9 @@ Alle plugins bruger ng-cordova http://ngcordova.com/. Check det ud hvis I skal b
 ### Kendte problemer ###
 Crosswalk anerkender åbenbart ikke de whitelistede urls i config.xml og returnerer 404 ved fx hentning af google maps api og kort tiles. Derfor :
 I \"platforms\android\src\org\crosswalk\engine\XWalkCordovaResourceClient.java" linje 204 udkommenter 'return new WebResourceResponse("text/plain", "UTF-8", null);' 
- http://forum.ionicframework.com/t/crosswalk-whitelist/20329
+http://forum.ionicframework.com/t/crosswalk-whitelist/20329
+ 
+OBS OBSOBS SKulle være løst med metadata tagget i index.html samt cordova-whitelist pluginnet.
 
 ###Release###
 
@@ -29,10 +31,10 @@ Der laves et build med release-flag og MUILD_MULTIPLE_APKS sat til true : **MUIL
 Grundlæggende information kan findes her http://ionicframework.com/docs/guide/publishing.html.
 For nemheds skyld så flyt Apk'en og keystore filen til samme mappe.
 Derefter skal en key laves. Derefter skal den key bruges til at signe de outputtede apk-filer (findes i platforms/android/build/outputs/apk).
-**jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore android-armv7-release-unsigned.apk alias_name**, koden er : Tjunadk
+**jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore certificates/android/release/jobcenterapp.keystore android-armv7-release-unsigned.apk alias_name**, koden er : sonnenielsen
 
 Derefter skal den signede fil pakkes/zippes med zipalign. Zipalign er placeret i android sdk, så zipalign skal kaldes herfra. Zipalign er placeret i build-tools i android sdk.
-**/usr/local/Cellar/android-sdk/24.3.4/build-tools/23.0.0/zipalign -v 4 android-armv7-release-unsigned.apk LoadmasterLogger.apk**
+**/usr/local/Cellar/android-sdk/24.3.4/build-tools/23.0.0/zipalign -v 4 android-armv7-release-unsigned.apk sonnenielsen.apk**
 
 Det outputtede fra zipalign kan derefter uploades til app store.
 

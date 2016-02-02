@@ -28,10 +28,15 @@
   "cordovaPlugins": [
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
-    "org.apache.cordova.splashscreen"
+    "org.apache.cordova.splashscreen",
+    "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
-    "ios",
-    "android"
+    "android",
+    {
+      "platform": "ios",
+      "version": "4.0.0",
+      "locator": "ios@4.0.0"
+    }
   ]
 }
