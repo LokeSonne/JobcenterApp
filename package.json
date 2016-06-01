@@ -28,7 +28,7 @@
   "cordovaPlugins": [
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
-    "org.apache.cordova.splashscreen",
+    "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
