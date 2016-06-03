@@ -2,7 +2,7 @@
 <widget id="com.sonnenielsen.jobcenterapp" version="1.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Jobcenter</name>
     <description>
-        Jobcenter app for Kalundborg kommune
+        Jobcenter app
     </description>
     <author email="tjuna@gmail.com" href="http://tunapower.dk/">
       Tuna
